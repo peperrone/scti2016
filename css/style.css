@@ -12,3 +12,25 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+.logo-img{
+	width: 150px;
+	height: auto;
+	padding: 10px;
+}
+
+.scti-blue{
+	background-color: #3ea2db;
+}
+
+footer.scti-blue{
+	background-color: #3ea2db;
+}
+
+.lighthouse{
+	width: 50vw;
+    max-width: 250px;
+    height: auto;
+    bottom: -60px;
+    position: relative;
+    z-index: -2;
+}
