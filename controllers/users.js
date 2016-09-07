@@ -88,9 +88,9 @@ module.exports.isAuthenticated = function (req, res, next) {
 };
 
 var sendEmail = function(email, htmlBody, subject, callback) {
-	var transporter = nodemailer.createTransport('smtps://sctiuenf%40gmail.com:$7iU&NF8@smtp.gmail.com');
+	var transporter = nodemailer.createTransport('smtps://' + config.emailPrefix + '%40' + config.emailSuffix + ':' + config.emailPassword + '@smtp.' + config.emailSuffix);
 	var mailOptions = {
-	    from: '"SCTI 2016" <sctiuenf@gmail.com>', // sender address
+	    from: '"SCTI 2016" <' + config.emailPrefix + '@' + config.emailSuffix + '>', // sender address
 	    to: email, // list of receivers
 	    subject: subject, // Subject line
 	    html: htmlBody

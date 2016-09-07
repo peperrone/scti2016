@@ -1,0 +1,7 @@
+module.exports = {
+    'secret': YOUR_SECRET,
+    'database': YOUR_DATABASE_URI,
+    'emailPrefix': YOUR_EMAIL_ACCOUNT,
+    'emailSuffix': 'gmail.com',
+    'emailPassword': 'YOUR_PASSWORD'
+};
