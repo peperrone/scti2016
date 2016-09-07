@@ -23,6 +23,6 @@ angular.module('LoginCtrl', []).controller('loginCtrl', function($scope, $http, 
 
     	$http.post('/api/signin', user).then(successCallback, errorCallback);
     	
-    }
+    };
     
 });

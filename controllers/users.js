@@ -16,7 +16,7 @@ module.exports.signup = function(req, res, next) {
 		user.password = hash;
 		user.save(function(err) {
 			if (err) {
-				res.json({success: false, message: err.errmsg});
+				res.status(409).json({success: false, message: err.errmsg});
 			}
 			req.params.id = user.id;
 			res.json({success: true, user: user});

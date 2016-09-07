@@ -9,6 +9,10 @@ angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $loca
 	$scope.logout = function() {
 		sessionService.setSession({});
 		$location.path('/');
-	}
+	};
+
+	$scope.openModal = function() {
+		$('#modal2').openModal();
+	};
     
 });

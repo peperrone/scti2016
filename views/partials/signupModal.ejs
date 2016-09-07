@@ -6,26 +6,26 @@
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">account_circle</i>
-            <input id="name" type="text" class="validate">
+            <input ng-model="user.name" id="name" type="text" class="validate">
             <label for="name">Nome Completo</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">email</i>
-            <input id="email" type="tel" class="validate">
-            <label for="email">E-mail</label>
+            <input ng-model="user.email" id="email" type="email" class="validate" ng-class="{invalid: invalidEmail}">
+            <label for="email" data-error="{{emailError}}">E-mail</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">lock_outline</i>
-            <input id="password" type="password" class="validate">
-            <label for="password">Senha</label>
+            <input ng-model="user.password" id="password" type="password" class="validate"  ng-class="{invalid: invalidPassword}">
+            <label for="password" data-error="Sua senha deve ter no mínimo 5 caracteres">Senha</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">https</i>
-            <input id="password2" type="password" class="validate">
-            <label for="password2">Confirmar Senha</label>
+            <input ng-model="password2" id="password2" type="password" class="validate">
+            <label for="password2" data-error="As senhas digitadas precisam ser iguais">Confirmar Senha</label>
           </div>
           <div class="input-field col s12">
-            <button type="submit" class="waves-effect waves-light btn btn-large scti-blue">Enviar</button>
+            <button ng-click="signup()" type="submit" class="waves-effect waves-light btn btn-large scti-blue">Enviar</button>
           </div>
         </div>
       </form>
