@@ -107,11 +107,11 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 module.exports.sendVerification = function(req, res, next) {
 
 	var verificationCode = null;
-	var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
 	var subject = 'SCTI - Codigo de verificacao de email';
 	crypto.randomBytes(16, (err, buf) => {
 		if (err) throw err;
 		verificationCode = `${buf.toString('hex')}`;
+		var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
 		sendEmail(req.body.email, htmlBody, subject, function(error){
 			if (!error) {
 				User.findOne({_id: req.params.id}, function(err, user) {
