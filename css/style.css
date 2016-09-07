@@ -39,3 +39,7 @@ footer.scti-blue{
 	height:50px;
 	width: auto;
 }
+
+.contact-links li:hover{
+	color: #1a1a1a;
+}
