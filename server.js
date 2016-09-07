@@ -19,8 +19,10 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 app.set('superSecret', config.secret);
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+
 
 app.use(morgan('dev'));
 app.use('/api', apiRoutes);
