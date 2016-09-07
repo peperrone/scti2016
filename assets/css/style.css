@@ -18,9 +18,18 @@
 	padding: 10px;
 }
 
+.scti-blue-text{
+	color:#3ea2db;
+}
+
 .scti-blue{
 	background-color: #3ea2db;
 }
+
+.btn.scti-blue:hover{
+	background-color: #1e82bb;
+}
+
 
 footer.scti-blue{
 	background-color: #3ea2db;
@@ -33,6 +42,44 @@ footer.scti-blue{
     bottom: -60px;
     position: relative;
     z-index: -2;
+}
+
+.subscription-modal{
+	float: none;
+	height: 100%;
+}
+
+.input-field .prefix.active {
+  color: #1e82bb;
+}
+
+.input-field label.active {
+	color: #1e82bb;
+}
+
+.input-field label.active {
+	color: #1e82bb;
+} 	
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 79%;
+  width: 55%;
+  margin: auto;
+  overflow-y: auto;
+  border-radius: 2px;
+  will-change: top, opacity;
+}
+
+#modal2{
+	max-height: 40%;
+	width: 35%;
+
 }
 
 .text-icon{
