@@ -10,6 +10,7 @@ var viewRoutes = require('./routes/public');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('assets'));
 
 var port = process.env.PORT || 8080;
 
