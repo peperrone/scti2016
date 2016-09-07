@@ -15,4 +15,6 @@ router.post('/users/:id/sendVerification',
 router.post('/users/:id/validate', 
 			userCtrl.isAuthenticated, userCtrl.validate);
 
+router.post('/lostPassword', userCtrl.lostPassword)
+
 module.exports = router;

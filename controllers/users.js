@@ -87,36 +87,46 @@ module.exports.isAuthenticated = function (req, res, next) {
 	}
 };
 
+var sendEmail = function(email, htmlBody, subject, callback) {
+	var transporter = nodemailer.createTransport('smtps://sctiuenf%40gmail.com:$7iU&NF8@smtp.gmail.com');
+	var mailOptions = {
+	    from: '"SCTI 2016" <sctiuenf@gmail.com>', // sender address
+	    to: email, // list of receivers
+	    subject: subject, // Subject line
+	    html: htmlBody
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error)
+	    	callback(error);
+	    else
+	    	callback(false);
+	});
+}
+
 module.exports.sendVerification = function(req, res, next) {
 
 	var verificationCode = null;
-	var transporter = nodemailer.createTransport('smtps://rafael.ghossi%40gmail.com:rualzine@smtp.gmail.com');
-
+	var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
+	var subject = 'SCTI - Codigo de verificacao de email';
 	crypto.randomBytes(16, (err, buf) => {
 		if (err) throw err;
 		verificationCode = `${buf.toString('hex')}`;
-		var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
-		var mailOptions = {
-		    from: '"SCTI 2016" <rafael.ghossi@gmail.com>', // sender address
-		    to: req.body.email, // list of receivers
-		    subject: 'SCTI - Codigo de verificacao de email', // Subject line
-		    html: htmlBody
-		};
-
-		transporter.sendMail(mailOptions, function(error, info){
-		    if(error){
-		        res.json({success: false, message: error});
-		    }
-		    User.findOne({_id: req.params.id}, function(err, user) {
-			  if (!user)
-			    res.json({success: false, message: "User not found"});
-			  else {
-			  	user.verificationCode = verificationCode;
-			    user.save();
-			    console.log(user);
-			    res.json({success: true, message: "Verification code sent succesfully!", user: user});
-			  }
-			});
+		sendEmail(req.body.email, htmlBody, subject, function(error){
+			if (!error) {
+				User.findOne({_id: req.params.id}, function(err, user) {
+				  if (!user)
+				    res.json({success: false, message: "User not found"});
+				  else {
+				  	user.verificationCode = verificationCode;
+				    user.save();
+				    console.log(user);
+				    res.json({success: true, message: "Verification code sent succesfully!", user: user});
+				  }
+				});
+			} else {
+				res.json({success: false, message: error});
+			}
 		});
 	});
 };
@@ -133,5 +143,27 @@ module.exports.validate = function(req, res) {
 	  	user.save();
 	    res.json({success: true, message: "Your email was succesfully validated!", user: user});
 	  }
+	});
+}
+
+module.exports.lostPassword = function(req, res) {
+	User.findOne({
+		email: req.body.email
+	}, function(err, user) {
+		if (err) throw err;
+		if (!user) {
+			res.json({success: false, message: "Email not found!"});
+		} else {
+			var subject = "SCTI - Link para redefinição de senha";
+			//TODO: send link to change user password. 
+			var htmlBody = "Soon!";
+			sendEmail(req.body.email, htmlBody, subject, function(error) {
+				if (error) {
+					res.json({success: false, message: error});
+				} else {
+					res.json({success: true, message: "Link to change password was sent!"});
+				}
+			});
+		}
 	});
 }
