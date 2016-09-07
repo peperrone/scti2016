@@ -1,0 +1,52 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.logo-img{
+	width: 150px;
+	height: auto;
+	padding: 10px;
+}
+
+.scti-blue{
+	background-color: #3ea2db;
+}
+
+footer.scti-blue{
+	background-color: #3ea2db;
+}
+
+.lighthouse{
+	width: 50vw;
+    max-width: 250px;
+    height: auto;
+    bottom: -60px;
+    position: relative;
+    z-index: -2;
+}
+
+.text-icon{
+	height:50px;
+	width: auto;
+}
+
+.contact-links li:hover{
+	color: #1a1a1a;
+}
+
+.footer-img{
+	height: 30px;
+	width: auto;
+	padding-top: 10px;
+	margin: 0 20px;
+}
