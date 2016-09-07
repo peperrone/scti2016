@@ -34,3 +34,8 @@ footer.scti-blue{
     position: relative;
     z-index: -2;
 }
+
+.text-icon{
+	height:50px;
+	width: auto;
+}
