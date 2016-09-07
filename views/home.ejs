@@ -6,67 +6,11 @@
       <h5 class="header col s12 light">Como ser um bom profissional na área de TI?</h5>
     </div>
     <div class="row center">
-      <a class="waves-effect waves-light btn modal-trigger btn-large scti-blue" href=#modal1>Inscreva-se</a>
-      <div id="modal1" class="modal subscription-modal">
-        <div class="modal-content">
-          <h4 class="header center scti-blue-text">Inscrição</h4>
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">account_circle</i>
-                  <input id="name" type="text" class="validate">
-                  <label for="name">Nome Completo</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">email</i>
-                  <input id="email" type="tel" class="validate">
-                  <label for="email">E-mail</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">lock_outline</i>
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Senha</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">https</i>
-                  <input id="password2" type="password" class="validate">
-                  <label for="password2">Confirmar Senha</label>
-                </div>
-                <div class="input-field col s12">
-                  <button type="submit" class="waves-effect waves-light btn btn-large scti-blue">Enviar</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div id="modal2" class="modal subscription-modal">
-        <div class="modal-content">
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">email</i>
-                  <input id="email2" type="email" class="validate" required="" aria-required="true">
-                  <label id="labelEmail2" for="email2" data-error="Insira um email válido">E-mail</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix scti-blue-text">lock_outline</i>
-                  <input id="password3" type="password" class="validate" required="" aria-required="true">
-                  <label id="labelPassword3" for="password3">Senha</label>
-                </div>
-                <div class="input-field col s12">
-                  <div ng-click="login()" id="loginBtn" type="submit" class="waves-effect waves-light btn scti-blue">Login</div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <a class="waves-effect waves-light btn btn-large scti-blue modal-trigger" ng-click="openModal();">Inscreva-se</a>
+      <% include partials/signupModal %>
+      <% include partials/loginModal %>
     </div>
     <br><br>
-
   </div>
 </div>
 

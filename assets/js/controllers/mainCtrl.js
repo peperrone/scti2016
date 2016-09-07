@@ -1,8 +1,8 @@
-angular.module('MainCtrl', []).controller('mainCtrl', function($scope, $location) {
+angular.module('MainCtrl', [])
+	.controller('mainCtrl', function($scope) {
 
-    $scope.login = function(){
-    	$('#modal2').closeModal();
-    	$location.path('/user');
-    }
+	$scope.openModal = function() {
+		$('#modal1').openModal();
+	}
 
 });

@@ -1,1 +1,1 @@
-angular.module('sctiApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'UserAreaCtrl']);
+var app = angular.module('sctiApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'UserAreaCtrl', 'HeaderCtrl', 'LoginCtrl', 'SignupCtrl']);

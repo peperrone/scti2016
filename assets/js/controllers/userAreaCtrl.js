@@ -1,5 +1,5 @@
-angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope) {
+angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, sessionService) {
 
-    //do stuff 
-
+    $scope.user = sessionService.getUser();
+    
 });

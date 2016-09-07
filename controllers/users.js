@@ -30,7 +30,7 @@ module.exports.signin = function(req, res) {
 	}, function(err, user) {
 		if (err) throw err;
 		if (!user) {
-			res.json({success: false, message: "Authentication failed. User not found!"});
+			res.status(401).json({success: false, message: "Authentication failed. User not found!"});
 		} else {
 			bcrypt.compare(req.body.password, user.password, function(bcryptErr, bcryptRes) {
 		    	if (bcryptErr) throw bcryptErr;
@@ -46,7 +46,7 @@ module.exports.signin = function(req, res) {
 			          user: user
 			        });
 		    	} else {
-		    		res.json({success: false, message: "Authentication failed. Incorrect password!"});
+		    		res.status(401).json({success: false, message: "Authentication failed. Incorrect password!"});
 		    	}
 			});
 		}
