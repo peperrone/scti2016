@@ -6,22 +6,22 @@
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">account_circle</i>
-            <input ng-model="user.name" id="name" type="text" class="validate">
+            <input my-enter="signup()" ng-model="user.name" id="name" type="text" class="validate">
             <label for="name">Nome Completo</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">email</i>
-            <input ng-model="user.email" id="email" type="email" class="validate" ng-class="{invalid: invalidEmail}">
+            <input my-enter="signup()" ng-model="user.email" id="email" type="email" class="validate" ng-class="{invalid: invalidEmail}">
             <label for="email" data-error="{{emailError}}">E-mail</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">lock_outline</i>
-            <input ng-model="user.password" id="password" type="password" class="validate"  ng-class="{invalid: invalidPassword}">
+            <input my-enter="signup()" ng-model="user.password" id="password" type="password" class="validate"  ng-class="{invalid: invalidPassword}">
             <label for="password" data-error="Sua senha deve ter no mínimo 5 caracteres">Senha</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">https</i>
-            <input ng-model="password2" id="password2" type="password" class="validate">
+            <input my-enter="signup()" ng-model="password2" id="password2" type="password" class="validate">
             <label for="password2" data-error="As senhas digitadas precisam ser iguais">Confirmar Senha</label>
           </div>
           <div class="input-field col s12">

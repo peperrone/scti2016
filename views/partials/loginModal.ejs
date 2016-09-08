@@ -5,12 +5,12 @@
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">email</i>
-            <input ng-model="user.email" id="email2" type="email" class="validate" ng-class="{invalid: invalidEmail}" required="" aria-required="true">
+            <input ng-model="user.email" id="email2" type="email" class="validate" ng-class="{invalid: invalidEmail}" required="" aria-required="true" my-enter="login()">
             <label id="labelEmail2" for="email2" data-error="Insira um email válido">E-mail</label>
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix scti-blue-text">lock_outline</i>
-            <input ng-model="user.password" ng-class="{invalid: invalidPassword}" id="password3" type="password" class="validate" required="" aria-required="true">
+            <input ng-model="user.password" ng-class="{invalid: invalidPassword}" id="password3" type="password" class="validate" required="" aria-required="true" my-enter="login()">
             <label id="labelPassword3" for="password3" data-error="Senha inválida!">Senha</label>
           </div>
           <div class="input-field col s12">
