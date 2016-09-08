@@ -1,0 +1,7 @@
+{
+    "database": "MONGO_DEFAULT_URI",
+    "secret": "YOUR_APP_SECRET",
+    "emailPrefix": "YOUR_EMAIL_PREFIX",
+    "emailSuffix": "YOUR_EMAIL_SUFFIX",
+    "emailPassword": "YOUR_EMAIL_PASSWORD"
+}

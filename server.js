@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var mongoose   = require('mongoose');
 
-var config = require('./config');
+var config = require('config');
 var apiRoutes = require('./routes/api');
 var viewRoutes = require('./routes/public');
 
@@ -22,9 +22,9 @@ app.set('superSecret', config.secret);
 // app.engine('html', require('ejs').renderFile);
 // app.set('view engine', 'html');
 app.set('view engine', 'ejs');
-
-
-app.use(morgan('dev'));
+if(config.util.getEnv('NODE_ENV') !== 'test') {
+    app.use(morgan('combined'));
+}
 app.use('/api', apiRoutes);
 app.use('/', viewRoutes);
 
