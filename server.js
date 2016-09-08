@@ -17,6 +17,7 @@ var port = process.env.PORT || 8080;
 mongoose.connect(config.database);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+mongoose.Promise = global.Promise;
 
 app.set('superSecret', config.secret);
 // app.engine('html', require('ejs').renderFile);
