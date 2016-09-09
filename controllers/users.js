@@ -100,6 +100,7 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 	    subject: subject, // Subject line
 	    html: htmlBody
 	};
+	console.log(mailOptions);
 
 	transporter.sendMail(mailOptions, function(error, info){
 	    if(error)
@@ -117,7 +118,7 @@ module.exports.sendVerification = function(req, res, next) {
 		if (err) throw err;
 		verificationCode = `${buf.toString('hex')}`;
 		var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
-		sendEmail(req.body.email, htmlBody, subject, function(error){
+		sendEmail(req.body.user.email, htmlBody, subject, function(error){
 			if (!error) {
 				User.findOne({_id: req.params.id}, function(err, user) {
 				  if (!user)

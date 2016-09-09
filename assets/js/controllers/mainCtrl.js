@@ -11,7 +11,8 @@ angular.module('MainCtrl', [])
 			sessionService.setSession(res.data);
 			$location.path('/user');
 		}, function(err) {
-			console.log(err.data.message);
+			if (err.data.message)
+				console.log(err.data.message);
 		});
 	}
 

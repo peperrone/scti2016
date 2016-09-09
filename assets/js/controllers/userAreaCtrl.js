@@ -14,13 +14,9 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 				setUser();
 			}, function(err) {
 				$location.path('/');
-				console.log(err);
 			});
 		};
 	} else {
 		setUser();
 	}
-
-
-	
 });
