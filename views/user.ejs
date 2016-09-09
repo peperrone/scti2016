@@ -1,102 +1,96 @@
 <div class="section no-pad-bot" id="index-banner">
-<div class="container">
-  <div class="section no-pad-bot" id="index-banner">
-<div class="container">
-  <h1 class="header center scti-blue-text">Status de Pagamento</h1>
-  <div class="row center">
+  <div class="container">
+    <div class="section no-pad-bot" id="index-banner">
+      <h4 class="header center scti-blue-text">Código de verificação de email</h4>
+      <form action="#">
+        <div class="file-field input-field">
+          <div class="">
+            <div class="input-field col s6">
+              <input id="first_name2" type="text" class="validate">
+            </div>
+          </div>
+          <div class="btn2 waves-effect waves-light btn-large scti-blue modal-trigger">
+            <span>Enviar</span>
+          </div>
+        </div>
+      </form>
+      <br><br>
+      <br>
+
+      <div class="container">
+        <h1 class="header center scti-blue-text">Status de Pagamento</h1>
+        <div class="row center">
     
-    <div class="row">
-    <div class="col s16 m2">
-      <div class="icon-block">
-        <h2 class="center light-blue-text"><i class="material-icons prefix gray-icon">query_builder</i></h2>
-        <p class="light">Aguardando pagamento</p>
-      </div>
-    </div>
+          <div class="row">
+            <div class="col s16 m5">
+              <div class="icon-block">
+                <h2 class="center light-blue-text"><i class="payment-status material-icons prefix orange-icon">query_builder</i></h2>
+                <p class="light">Aguardando confirmação</p>
+              </div>
+            </div>
 
-     <div class="col s16 m3">
-      <div class="icon-block">
-        <h2 class="center light-blue-text"><i class="material-icons prefix gray-icon">trending_flat</i></h2>
-      </div>
-    </div>
+            <div class="col s16 m2">
+              <div class="icon-block">
+                <h2 class="center light-blue-text"><i class="payment-status material-icons prefix gray-icon">trending_flat</i></h2>
+              </div>
+            </div>
 
-    <div class="col s16 m2">
-      <div class="icon-block">
-        <h2 class="center light-blue-text"><i class="material-icons prefix gray-icon">repeat</i></h2>
-        <p class="light">Processando pagamento</p>
+            <div class="col s16 m5">
+              <div class="icon-block">
+                <h2 class="center light-blue-text"><i class="payment-status material-icons prefix gray-icon">thumb_up</i></h2>
+                <p class="light">Aprovado</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-     <div class="col s16 m3">
-      <div class="icon-block">
-        <h2 class="center light-blue-text"><i class="material-icons prefix gray-icon">trending_flat</i></h2>
-      </div>
-    </div>
-
-    <div class="col s16 m2">
-      <div class="icon-block">
-        <h2 class="center light-blue-text"><i class="material-icons prefix gray-icon">thumb_up</i></h2>
-        <p class="light">Aprovado</p>
-      </div>
+    </div>   
+    <h1 class="header center scti-blue-text">Pagamento</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">Escolha a  melhor forma de pagamento para você:</h5>
     </div>
   </div>
-
-  </div>
- </div>
-</div>   
-<br><br>
-<br><br>
-  <h1 class="header center scti-blue-text">Pagamento</h1>
-  <div class="row center">
-    <h5 class="header col s12 light">Escolha a  melhor forma de pagamento para você:</h5>
-  </div>
- </div>
 </div>   
 
 <div class="container">
-<div class="section">
+  <div class="section">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m6">
+        <div id="paypal" class="icon-block z-depth-1 payment">
+          <h2 class="center light-blue-text"><!-- PayPal Logo --><img  src="https://www.paypal-brasil.com.br/logocenter/util/img/selo_aceitacao_horizontal.png" border="0" alt="Imagens de solução" /><!-- PayPal Logo --></h2>
+          <h5 class="center">Paypal</h5>
 
-  <!--   Icon Section   -->
-  <div class="row">
-    <div class="col s12 m6">
-      <div id="paypal" class="icon-block z-depth-1 payment">
-        <h2 class="center light-blue-text"><!-- PayPal Logo --><img  src="https://www.paypal-brasil.com.br/logocenter/util/img/selo_aceitacao_horizontal.png" border="0" alt="Imagens de solução" /><!-- PayPal Logo --></h2>
-        <h5 class="center">Paypal</h5>
+          <p class="light">Com essa forma de pagamento, a inscrição pode ser dividida até em 3 vezes:</p><center>
+          <p class="light">1x de R$53,10 (10,00% de desconto)</p>
+          <p class="light">2x de R$29,50 = R$59,00</p>
+          <p class="light">3x de R$19,66 = R$59,00</p>
 
-        <p class="light">Com essa forma de pagamento, a inscrição pode ser dividida até em 3 vezes:</p><center>
-        <p class="light">1x de R$53,10 (10,00% de desconto)</p>
-        <p class="light">2x de R$29,50 = R$59,00</p>
-        <p class="light">3x de R$19,66 = R$59,00</p>
+          <p class="light comment">*As taxas são referentes ao serviço prestado pelo Paypal.</p></center>
+        </div>
+      </div>
 
-        <p class="light comment">*As taxas são referentes ao serviço prestado pelo Paypal.</p></center>
+      <div class="col s12 m6">
+        <div id="local-pay" class="icon-block z-depth-1 payment">
+          <h2 class="center light-blue-text"><img class="text-icon" src="imgs/payment.png"></h2>
+          <h5 class="center">Presencial</h5>
 
+          <p class="light">Você também tem a opção de pagar diretamente a um de nossos organizadores. Combine um horário conosco:</p>
+          <p>Rafael Ghossi: (22) 99887-1161</p>
+          <p>Dióginis Carvalho: (22) 98138-0549</p>
+          <p>Ian Carlos Bertoncelo: (28) 99940-5556</p>
+          <center><p class="light">1x de R$50,00</p></center>
+        </div>
       </div>
     </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="ATMVW7SCYMTDU">
+      <input type="hidden" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+      <button type="submit" id="paypal-btn" class="pay-btn btn btn-large center sleep"><i class="fa fa-paypal"></i> Pagar</button>
+    </form>
 
-    <div class="col s12 m6">
-      <div id="local-pay" class="icon-block z-depth-1 payment">
-        <h2 class="center light-blue-text"><img class="text-icon" src="imgs/payment.png"></h2>
-        <h5 class="center">Presencial</h5>
-
-        <p class="light">Você também tem a opção de pagar diretamente a um de nossos organizadores. Combine um horário com os organizadores</p>
-        <p>Rafael Ghossi: (22) 99887-1161</p>
-        <p>Dióginis Carvalho: (22) 98138-0549</p>
-        <p>Ian Carlos Bertoncelo: (28) 99940-5556</p>
-        <center><p class="light">1x de R$50,00</p></center>
-      </div>
-    </div>
+    <button id="localpay-btn" class="pay-btn btn btn-large center sleep">Digitar Código</button>
   </div>
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="ATMVW7SCYMTDU">
-    <input type="hidden" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
-    <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
-    <button type="submit" id="paypal-btn" class="pay-btn btn btn-large center sleep"><i class="fa fa-paypal"></i> Pagar</button>
-  </form>
-  
-  <button id="localpay-btn" class="pay-btn btn btn-large center sleep">Digitar Código</button>
-</div>
-
-<div class="section">
-
-</div>
 </div>
