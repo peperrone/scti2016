@@ -4,8 +4,23 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 		$('#modal3').openModal();
 	};
 
-	var user = sessionService.getUser();
-	if (!user){
+	$scope.validateEmail = function() {
+		if ($scope.verificationCode) {
+			var url = 'api/users/' + $scope.user._id + '/validate';
+			$http.post(url, {token: token, verificationCode: $scope.verificationCode}).then(function(res) {
+				$scope.user = res.data.user;
+			}, function(err) {
+				console.log(err);
+				$('#verification-code-input').addClass("invalid").removeClass("valid");
+			});
+		} else {
+			$('#verification-code-input').removeClass("valid").addClass("invalid");
+		}
+	};
+
+	$scope.user = sessionService.getUser();
+
+	if (!$scope.user){
 		var token = $window.localStorage.token;
 		if (token) {
 			$http.post('/api/authenticate', {token: token}).then(function(res) {

@@ -1,22 +1,25 @@
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
     <div class="section no-pad-bot" id="index-banner">
-      <h4 class="header center scti-blue-text">Código de verificação de email</h4>
-      <p class="center">Por favor, digite seu e-mail. Para reenviarmos o código.</p>
-      <form action="#">
-        <div class="file-field input-field">
-          <div class="row">
-            <div class="input-field col s12 m4 offset-m4">
-              <input id="first_name2" type="text" class="validate">
+      <div ng-hide="user.isValidated">
+        <h4 class="header center scti-blue-text">Código de verificação de email</h4>
+        <p class="center">Por favor, digite seu e-mail. Para reenviarmos o código.</p>
+        <form ng-submit="validateEmail()"=>
+          <div class="file-field input-field">
+            <div class="row">
+              <div class="input-field col s12 m4 offset-m4">
+                <input id="verification-code-input" ng-model="verificationCode" type="text" class="validate">
+                <label id="verification-code-label" for="verification-code-input">
+              </div>
             </div>
+            <button class="btn waves-effect waves-light btn-large scti-blue modal-trigger center">
+              Enviar
+            </button>
           </div>
-          <button class="btn waves-effect waves-light btn-large scti-blue modal-trigger center">
-            Enviar
-          </button>
-        </div>
-      </form>
-      <br><br>
-      <br>
+        </form>
+        <br><br>
+        <br>
+      </div>
 
       <div class="container">
         <h1 class="header center scti-blue-text">Status de Pagamento</h1>
