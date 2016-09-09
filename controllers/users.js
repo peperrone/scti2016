@@ -89,8 +89,8 @@ module.exports.isAuthenticated = function (req, res, next) {
 };
 
 module.exports.authenticate = function(req, res) {
-	var user = jwt.decode(req.body.token);
-	res.status(200).json({ success: true, user: user, token: req.body.token});
+	var decode = jwt.decode(req.body.token);
+	res.status(200).json({ success: true, user: decode._doc, token: req.body.token});
 }
 
 var sendEmail = function(email, htmlBody, subject, callback) {
@@ -180,10 +180,20 @@ module.exports.validateGiftCode = function(req, res) {
 		if (!user) {
 	    	res.json({success: false, message: "User not found"});
 		} else {
-
-		  	user.hasPayed = true;
-		  	user.save();
-		    res.json({success: true, message: "Your payment was approved!", user: user});
+			GiftCode.findOne({code: req.body.giftCode}, function(err, giftCode){
+				if (!giftCode) {
+					res.json({success: false, message: "Code not found"});
+				} else {
+					if (giftCode.userId != null) {
+						res.json({success: false, message: "Sorry. Someone has already taken this one!"});
+					} else {
+						user.hasPayed = true;
+						giftCode.userId = req.params.id;
+					  	user.save();
+					    res.json({success: true, message: "Your payment was approved!", user: user, giftCode: giftCode});
+					}
+				}
+			});	
 	  	}
 	});
 };
