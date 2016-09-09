@@ -202,19 +202,19 @@ img.center{
 
 button.center{
 	display: table;
-	margin: 0 auto; 
+	margin: 0 auto;
+	float: none !important; 
 }
 
 button.sleep{
 	display: none;
 }
 
-.btn2 {
-	margin-left: 265px;
-	background-color: #2BBBAD;
-}
 
-.input-field {
-	margin-left: 120px;
-	width: 400px;
+
+#local-pay, #paypal{
+	max-width: 450px;
+	width: 45vw;
+	margin-bottom: 30px;
+	transition: 1s;
 }
