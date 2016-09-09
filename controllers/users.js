@@ -90,8 +90,14 @@ module.exports.isAuthenticated = function (req, res, next) {
 
 module.exports.authenticate = function(req, res) {
 	var decode = jwt.decode(req.body.token);
-	res.status(200).json({ success: true, user: decode._doc, token: req.body.token});
-}
+	User.findOne({_id: decode._doc._id}, function(err, user) {
+		if (!user) {
+			res.status(403).json({success: false, message: "User not found"});
+		} else {
+			res.status(200).json({ success: true, user: user, token: req.body.token});
+		}
+	});
+};
 
 var sendEmail = function(email, htmlBody, subject, callback) {
 	var transporter = nodemailer.createTransport('smtps://' + config.emailPrefix + '%40' + config.emailSuffix + ':' + config.emailPassword + '@smtp.' + config.emailSuffix);
@@ -187,11 +193,10 @@ module.exports.validateGiftCode = function(req, res) {
 					if (giftCode.userId != null) {
 						res.json({success: false, message: "Sorry. Someone has already taken this one!"});
 					} else {
-						console.log(user);
 						user.hasPayed = true;
 						giftCode.userId = req.params.id;
 						giftCode.save();
-					  	user.save();
+						user.save();
 					    res.json({success: true, message: "Your payment was approved!", user: user, giftCode: giftCode});
 					}
 				}
