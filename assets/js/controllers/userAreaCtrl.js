@@ -42,10 +42,10 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
     $scope.confirmGiftCode = function(){
     	var url = '/api/users/' + $scope.user._id + '/validateGiftCode';
     	$http.post(url, {user: $scope.user, giftCode: $scope.giftCode, token: $window.localStorage.token}).then(function(res) {
+			console.log(res);
 			//TODO: Confirm payment
 			$('#modal3').closeModal();
 		}, function(err) {
-			console.log(err);
 			$('#giftCode').addClass("invalid").removeClass("valid");
 		});
     }

@@ -182,13 +182,15 @@ module.exports.validateGiftCode = function(req, res) {
 		} else {
 			GiftCode.findOne({code: req.body.giftCode}, function(err, giftCode){
 				if (!giftCode) {
-					res.json({success: false, message: "Code not found"});
+					res.status(403).json({success: false, message: "Code not found"});
 				} else {
 					if (giftCode.userId != null) {
 						res.json({success: false, message: "Sorry. Someone has already taken this one!"});
 					} else {
+						console.log(user);
 						user.hasPayed = true;
 						giftCode.userId = req.params.id;
+						giftCode.save();
 					  	user.save();
 					    res.json({success: true, message: "Your payment was approved!", user: user, giftCode: giftCode});
 					}
