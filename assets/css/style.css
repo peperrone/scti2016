@@ -161,12 +161,12 @@ img.center{
 }
 
 .construction {
-	max-width: 300px;
-	max-height: 300px;
-	width: 70vw;
-    height: auto;
-    bottom: 0px;
-    position: relative;
+	/*max-height: 300px;*/
+	/*width: 70vw;*/
+ /* height: auto;*/
+ /* bottom: 0px;*/
+ /* position: relative;*/
+ width:100%;
 }
 
 .backgrey{
@@ -175,23 +175,20 @@ img.center{
 	background-color: #d5d5d5;
 }
 
-.construction-alert{
-	float: right;
-	font-size: 40px;
-	color: #FD8124;
-	width: 900px;
-	margin-top: 50px;
-	font-family: 'Orbitron', sans-serif;
-	position: relative;
+.alert p{
+	/*float: right;*/
+	/*width: 850px;*/
+	/*margin-top: -120px;*/
+	/*font-family: 'Orbitron', sans-serif;*/
+	position:relative;
+	top:50%;
 }
 
-.construction-alert2{
-	float: right;
-	font-size: 40px;
-	color: #FD8124;
-	width: 850px;
-	margin-top: -120px;
-	font-family: 'Orbitron', sans-serif;
+.alert{
+	margin-top:;
+	color:#FD8124;
+	font-size:40px;
+	text-align:center;
 }
 
 .payment.active{
@@ -203,7 +200,7 @@ img.center{
 button.center{
 	display: table;
 	margin: 0 auto;
-	float: none !important; 
+	float: none !important;
 }
 
 button.sleep{
@@ -217,4 +214,18 @@ button.sleep{
 	width: 45vw;
 	margin-bottom: 30px;
 	transition: 1s;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 500px) {
+    body {
+        background-color: ;
+    }
+}
+
+@media only screen and (min-width: 900px){
+	
+	.valign{
+		margin-top: 115px;
+	}
 }
