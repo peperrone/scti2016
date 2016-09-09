@@ -1,0 +1,18 @@
+<div id="modal3" class="modal subscription-modal">
+  <div class="modal-content">
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix scti-blue-text">loyalty</i>
+            <input ng-model="giftCode" id="giftCode" type="text" class="validate" required="" aria-required="true" my-enter="confirmGiftCode()">
+            <label id="labelGiftCode" for="giftCode2" data-error="Código Inválido!">Digite aqui o código para confirmação do pagamento</label>
+          </div>
+          <div class="input-field col s12">
+            <div ng-click="confirmGiftCode()" id="confirmGiftCodeBtn" type="submit" class="waves-effect waves-light btn scti-blue">Confirmar</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

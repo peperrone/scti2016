@@ -92,8 +92,10 @@
     <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
     <button type="submit" id="paypal-btn" class="pay-btn btn btn-large center sleep"><i class="fa fa-paypal"></i> Pagar</button>
   </form>
-  
-  <button id="localpay-btn" class="pay-btn btn btn-large center sleep">Digitar Código</button>
+  <div class="row center">
+    <button id="localpay-btn" class="pay-btn btn btn-large center sleep" ng-click="openModal()">Digitar Código</button>
+    <% include partials/giftCodeModal %>
+  </div>
 </div>
 
 <div class="section">
