@@ -6,6 +6,10 @@ router.get('/routes/:name', function (req, res){
   	res.render(name);
 });
 
+router.get('/user', function(req, res) {
+	res.render("index");
+});
+
 router.get('/', function(req, res) {
 	res.render("index");
 });
