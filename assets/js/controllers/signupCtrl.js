@@ -22,11 +22,21 @@ angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http
 	    	$('#password2').removeClass("invalid");
 	    }
 
+        var sendVerificationEmail = function(data) {
+            var url = '/api/users/' + data.user._id + '/sendVerification';
+            $http.post(url, data).then(function(res) {
+                alert("Um código de verificação foi enviado para seu email.");
+            }, function(err) {
+                console.log(err);
+            });
+        }
+
     	var successCallback = function (res) {
     		if (res.data.success){
     			$('#modal1').closeModal();
     			$http.post('/api/signin', user).then(function(response){
     				if (response.status === 200){
+                        sendVerificationEmail(response.data);
 	    				sessionService.setSession(response.data);
 	    				$location.path('/user');
 	    			} else {

@@ -1,4 +1,4 @@
-angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $location, sessionService) {
+angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $window, $location, sessionService) {
 
 	$scope.$watch(function(){
     	return sessionService.getUser();
@@ -8,6 +8,7 @@ angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $loca
 
 	$scope.logout = function() {
 		sessionService.setSession({});
+		$window.localStorage.token = null;
 		$location.path('/');
 	};
 

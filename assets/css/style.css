@@ -7,10 +7,14 @@
  */
 
 .icon-block {
-  padding: 0 15px;
+  padding: 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+.payment{
+	height: 450px;
 }
 
 .home-h1{
@@ -143,6 +147,7 @@ img.center{
 	width: auto;
 	padding-bottom: 30px; 
 }
+
 .construction {
 	max-width: 300px;
 	max-height: 300px;
@@ -175,4 +180,19 @@ img.center{
 	width: 700px;
 	margin-top: -120px;
 	font-family: "Roboto", sans-serif;
+}
+
+.payment.active{
+	background-color: #3ea2db;
+	color: #fff;
+	transition: 1s;
+}
+
+button.center{
+	display: table;
+	margin: 0 auto;
+}
+
+button.sleep{
+	display: none;
 }

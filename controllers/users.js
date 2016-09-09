@@ -36,7 +36,7 @@ module.exports.signin = function(req, res) {
 		    	if (bcryptErr) throw bcryptErr;
 		    	if (bcryptRes) {
 		    		var token = jwt.sign(user, config.secret, {
-			        	expiresIn: 3600 // expires in 1 hour
+			        	expiresIn: "2h"
 			        });
 
 			        res.json({
@@ -70,22 +70,27 @@ module.exports.edit = function(req, res){
 };
 
 module.exports.isAuthenticated = function (req, res, next) {
-    if (req.headers.token) {
-	    jwt.verify(req.headers.token, config.secret, function(err, decoded) {      
+    if (req.body.token) {
+	    jwt.verify(req.body.token, config.secret, function(err, decoded) {      
 	      if (err) {
-	        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+	        return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });    
 	      } else {
 	        req.decoded = decoded;    
 	        return next();
 	      }
 	    });
 	} else {
-	    return res.status(403).send({ 
+	    return res.status(400).send({ 
 	        success: false, 
 	        message: 'No token provided.' 
 	    });  
 	}
 };
+
+module.exports.authenticate = function(req, res) {
+	var user = jwt.decode(req.body.token);
+	res.status(200).json({ success: true, user: user, token: req.body.token});
+}
 
 var sendEmail = function(email, htmlBody, subject, callback) {
 	var transporter = nodemailer.createTransport('smtps://' + config.emailPrefix + '%40' + config.emailSuffix + ':' + config.emailPassword + '@smtp.' + config.emailSuffix);
@@ -95,6 +100,7 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 	    subject: subject, // Subject line
 	    html: htmlBody
 	};
+	console.log(mailOptions);
 
 	transporter.sendMail(mailOptions, function(error, info){
 	    if(error)
@@ -112,7 +118,7 @@ module.exports.sendVerification = function(req, res, next) {
 		if (err) throw err;
 		verificationCode = `${buf.toString('hex')}`;
 		var htmlBody = 'Entre com o codigo <b>' + verificationCode + '</b> no site da SCTI para validar seu e-mail. <br>';
-		sendEmail(req.body.email, htmlBody, subject, function(error){
+		sendEmail(req.body.user.email, htmlBody, subject, function(error){
 			if (!error) {
 				User.findOne({_id: req.params.id}, function(err, user) {
 				  if (!user)
@@ -166,4 +172,4 @@ module.exports.lostPassword = function(req, res) {
 			});
 		}
 	});
-}
+};
