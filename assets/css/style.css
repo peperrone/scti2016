@@ -17,6 +17,10 @@
 	font-size: 3rem;
 }
 
+.home-h5{
+	font-size: 1.5rem;
+}
+
 .logo-img{
 	width: 150px;
 	height: auto;
@@ -138,4 +142,37 @@ img.center{
 	height: 150px;
 	width: auto;
 	padding-bottom: 30px; 
+}
+.construction {
+	max-width: 300px;
+	max-height: 300px;
+	width: 70vw;
+    height: auto;
+    bottom: 0px;
+    position: relative;
+}
+
+.backgrey{
+	bottom: 50px;
+	position: relative;
+	background-color: #d5d5d5;
+}
+
+.construction-alert{
+	float: right;
+	font-size: 40px;
+	color: #FD8124;
+	width: 900px;
+	margin-top: 50px;
+	font-family: "Roboto", sans-serif;
+	position: relative;
+}
+
+.construction-alert2{
+	float: right;
+	font-size: 40px;
+	color: #FD8124;
+	width: 700px;
+	margin-top: -120px;
+	font-family: "Roboto", sans-serif;
 }
