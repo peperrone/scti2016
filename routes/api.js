@@ -9,6 +9,8 @@ router.post('/users/:id/sendVerification',
 			userCtrl.isAuthenticated, userCtrl.sendVerification);
 router.post('/users/:id/validate', 
 			userCtrl.isAuthenticated, userCtrl.validate);
+router.post('/users/:id/validateGiftCode', 
+			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.post('/lostPassword', userCtrl.lostPassword);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 

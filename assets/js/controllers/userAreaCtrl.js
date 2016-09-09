@@ -44,7 +44,8 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
     });
 
     $scope.confirmGiftCode = function(){
-    	$http.post('/api/confirmGiftCode', {giftCode: $scope.giftCode}).then(function(res) {
+    	var url = '/api/users/' + user._id + '/validateGiftCode';
+    	$http.post(url, {user: user, giftCode: $scope.giftCode}).then(function(res) {
 			//TODO: Confirm payment
 			$('#modal3').closeModal();
 		}, function(err) {

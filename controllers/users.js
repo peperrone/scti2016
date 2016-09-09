@@ -1,4 +1,5 @@
 var User   = require('../models/user');
+var GiftCode   = require('../models/giftcode');
 var bcrypt = require('bcrypt');
 var jwt    = require('jsonwebtoken');
 var config = require('config');
@@ -171,5 +172,18 @@ module.exports.lostPassword = function(req, res) {
 				}
 			});
 		}
+	});
+};
+
+module.exports.validateGiftCode = function(req, res) {
+	User.findOne({_id: req.params.id}, function(err, user) {
+		if (!user) {
+	    	res.json({success: false, message: "User not found"});
+		} else {
+
+		  	user.hasPayed = true;
+		  	user.save();
+		    res.json({success: true, message: "Your payment was approved!", user: user});
+	  	}
 	});
 };
