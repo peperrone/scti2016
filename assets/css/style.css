@@ -7,10 +7,14 @@
  */
 
 .icon-block {
-  padding: 0 15px;
+  padding: 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+.payment{
+	height: 450px;
 }
 
 .home-h1{
@@ -138,4 +142,19 @@ img.center{
 	height: 150px;
 	width: auto;
 	padding-bottom: 30px; 
+}
+
+.payment.active{
+	background-color: #3ea2db;
+	color: #fff;
+	transition: 1s;
+}
+
+button.center{
+	display: table;
+	margin: 0 auto;
+}
+
+button.sleep{
+	display: none;
 }
