@@ -217,9 +217,9 @@ button.sleep{
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 500px) {
-    body {
-        background-color: ;
+@media only screen and (min-width: 600px) {
+    .lighthouse {
+        bottom: -230px ;
     }
 }
 
