@@ -4,7 +4,23 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 		$('#modal3').openModal();
 	};
 
+	$scope.validateEmail = function() {
+		if ($scope.verificationCode) {
+			var url = 'api/users/' + $scope.user._id + '/validate';
+			$http.post(url, {token: token, verificationCode: $scope.verificationCode}).then(function(res) {
+				$scope.user = res.data.user;
+				alert("Email verifiado com sucesso!");
+			}, function(err) {
+				console.log(err);
+				$('#verification-code-input').addClass("invalid").removeClass("valid");
+			});
+		} else {
+			$('#verification-code-input').removeClass("valid").addClass("invalid");
+		}
+	};
+
 	var user = sessionService.getUser();
+
 	if (!user){
 		var token = $window.localStorage.token;
 		if (token) {
@@ -40,13 +56,19 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
     });
 
     $scope.confirmGiftCode = function(){
-    	var url = '/api/users/' + $scope.user._id + '/validateGiftCode';
-    	$http.post(url, {user: $scope.user, giftCode: $scope.giftCode, token: $window.localStorage.token}).then(function(res) {
-			console.log(res);
-			//TODO: Confirm payment
-			$('#modal3').closeModal();
-		}, function(err) {
-			$('#giftCode').addClass("invalid").removeClass("valid");
-		});
+    	if (!$scope.giftCode) {
+    		$('#labelGiftCode').removeClass("data-error");
+    		$('#giftCode').addClass("invalid").removeClass("valid");
+    	} else {
+	    	var url = '/api/users/' + $scope.user._id + '/validateGiftCode';
+	    	$http.post(url, {user: $scope.user, giftCode: $scope.giftCode, token: sessionService.getToken()}).then(function(res) {
+				$('#modal3').closeModal();
+				$scope.user = res.data.user;
+				alert("Pagamento confirmado com sucesso!");
+			}, function(err) {
+				$('#labelGiftCode').attr("data-error", "Código inválido!");
+				$('#giftCode').addClass("invalid").removeClass("valid");
+			});
+	    }
     }
 });
