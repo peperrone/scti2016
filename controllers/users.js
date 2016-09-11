@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const saltRounds = 10;
 
-var SECRET = process.env.secret || config.secret;
+var SECRET = process.env.SECRET || config.secret;
 var EMAIL_PREFIX = process.env.emailPrefix || config.emailPrefix;
 var EMAIL_SUFFIX = process.env.emailSuffix || config.emailSuffix;
 var EMAIL_PASSWORD = process.env.emailPassword || config.emailPassword;
