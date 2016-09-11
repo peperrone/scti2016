@@ -13,7 +13,7 @@ module.exports.signup = function(req, res, next) {
 	user.verificationCode = null;
 	user.hasPayed = false;
 	bcrypt.hash(user.password, saltRounds, function(err, hash){
-		if (err) res.json({success: false, message: err.errmsg});
+		if (err) res.status(500).json({success: false, message: err.errmsg});
 		user.password = hash;
 		user.save(function(err) {
 			if (err) {
@@ -57,7 +57,7 @@ module.exports.signin = function(req, res) {
 module.exports.edit = function(req, res){
 	User.findOne({_id: req.params.id}, function(err, user) {
 	  if (!user)
-	    res.json({success: false, message: "User not found/updated!"});
+	    res.status(409).json({success: false, message: "User not found/updated!"});
 	  else {
 	    if (req.body.hasPayed) user.hasPayed = req.body.hasPayed;
 	    if (req.body.name) user.name = req.body.name;
@@ -129,7 +129,7 @@ module.exports.sendVerification = function(req, res, next) {
 			if (!error) {
 				User.findOne({_id: req.params.id}, function(err, user) {
 				  if (!user)
-				    res.json({success: false, message: "User not found"});
+				    res.status(409).json({success: false, message: "User not found"});
 				  else {
 				  	user.verificationCode = verificationCode;
 				    user.save();
@@ -138,7 +138,7 @@ module.exports.sendVerification = function(req, res, next) {
 				  }
 				});
 			} else {
-				res.json({success: false, message: error});
+				res.status(500).json({success: false, message: error});
 			}
 		});
 	});
@@ -147,9 +147,9 @@ module.exports.sendVerification = function(req, res, next) {
 module.exports.validate = function(req, res) {
 	User.findOne({_id: req.params.id}, function(err, user) {
 	  if (!user)
-	    res.json({success: false, message: "User not found"});
+	    res.status(409).json({success: false, message: "User not found"});
 	  else if (user.verificationCode != req.body.verificationCode){
-	  	res.json({success: false, message: "Wrong code. Try again!"});
+	  	res.status(403).json({success: false, message: "Wrong code. Try again!"});
 	  } else {
 	  	user.verificationCode = null;
 	  	user.isValidated = true;
@@ -165,14 +165,14 @@ module.exports.lostPassword = function(req, res) {
 	}, function(err, user) {
 		if (err) throw err;
 		if (!user) {
-			res.json({success: false, message: "Email not found!"});
+			res.status(409).json({success: false, message: "Email not found!"});
 		} else {
 			var subject = "SCTI - Link para redefinição de senha";
 			//TODO: send link to change user password. 
 			var htmlBody = "Soon!";
 			sendEmail(req.body.email, htmlBody, subject, function(error) {
 				if (error) {
-					res.json({success: false, message: error});
+					res.status(500).json({success: false, message: error});
 				} else {
 					res.json({success: true, message: "Link to change password was sent!"});
 				}
@@ -184,14 +184,14 @@ module.exports.lostPassword = function(req, res) {
 module.exports.validateGiftCode = function(req, res) {
 	User.findOne({_id: req.params.id}, function(err, user) {
 		if (!user) {
-	    	res.json({success: false, message: "User not found"});
+	    	res.status(409).json({success: false, message: "User not found"});
 		} else {
 			GiftCode.findOne({code: req.body.giftCode}, function(err, giftCode){
 				if (!giftCode) {
 					res.status(403).json({success: false, message: "Code not found"});
 				} else {
 					if (giftCode.userId != null) {
-						res.json({success: false, message: "Sorry. Someone has already taken this one!"});
+						res.status(409).json({success: false, message: "Sorry. Someone has already taken this one!"});
 					} else {
 						user.hasPayed = true;
 						giftCode.userId = req.params.id;

@@ -1,4 +1,7 @@
-<div class="section no-pad-bot" id="index-banner">
+<div class="container center section no-pad-bot" ng-show="loading">
+  <img src="http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_3.gif">
+</div>
+<div class="section no-pad-bot" ng-hide="loading" id="index-banner">
   <div class="container">
     <div class="section no-pad-bot" id="index-banner">
       <div ng-hide="user.isValidated">
@@ -58,7 +61,7 @@
   </div>
 </div>   
 
-<div class="container" ng-hide="user.hasPayed">
+<div class="container" ng-hide="loading || user.hasPayed">
   <div class="section">
     <!--   Icon Section   -->
     <div class="row">

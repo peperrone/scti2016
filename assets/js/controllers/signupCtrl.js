@@ -1,5 +1,5 @@
 angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http, $location, sessionService) {
-
+    $scope.loading = false;
 	$scope.user = {};
 
     $scope.signup = function(){
@@ -32,6 +32,7 @@ angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http
         }
 
     	var successCallback = function (res) {
+            $scope.loading = false;
     		if (res.data.success){
     			$('#modal1').closeModal();
     			$http.post('/api/signin', user).then(function(response){
@@ -51,6 +52,7 @@ angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http
     	};
 
     	var errorCallback = function (res) {
+            $scope.loading = false;
     		if (res.status === 409) {
     			$scope.emailError = "Email já em uso!";
     			$scope.invalidEmail = true;
@@ -59,7 +61,7 @@ angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http
     	};
 
     	$http.post('/api/signup', user).then(successCallback, errorCallback);
-    	
+    	$scope.loading = true;
     }
     
 });

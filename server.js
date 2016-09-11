@@ -14,9 +14,45 @@ app.use(express.static('assets'));
 
 var port = process.env.PORT || 8080;
 
-mongoose.connect(config.database);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+var isConnectedBefore = false;
+var connect = function() {
+  return mongoose.connect(config.database, {server: { auto_reconnect: true }}, function(err) {
+    if (err) {
+      console.error('Failed to connect to mongo...', err);
+    }
+  });
+};
+connect();
+
+mongoose.connection.on('error', function(error) {
+    console.error('Error in MongoDb connection: ' + error);
+    mongoose.disconnect();
+});
+
+mongoose.connection.on('error', function() {
+    console.log('Could not connect to MongoDB');
+});
+
+mongoose.connection.on('disconnected', function(){
+    console.log('Lost MongoDB connection...');
+    mongoose.connect(config.database, {server:{auto_reconnect:true, socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 }}, replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }});
+});
+mongoose.connection.on('connected', function() {
+	isConnectedBefore = true;
+    console.log('Connection established to MongoDB');
+});
+
+mongoose.connection.on('reconnected', function() {
+    console.log('Reconnected to MongoDB');
+});
+
+process.on('SIGINT', function() {
+    mongoose.connection.close(function () {
+        console.log('Force to close the MongoDB conection');
+        process.exit(0);
+    });
+});
+
 mongoose.Promise = global.Promise;
 
 app.set('superSecret', config.secret);

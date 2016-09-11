@@ -1,4 +1,5 @@
 angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $window, $location, $http, sessionService) {
+	$scope.loading = true;
 
 	$scope.openModal = function() {
 		$('#modal3').openModal();
@@ -25,6 +26,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 		var token = $window.localStorage.token;
 		if (token) {
 			$http.post('/api/authenticate', {token: token}).then(function(res) {
+				$scope.loading = false;
 				sessionService.setSession(res.data);
 				$scope.user = res.data.user;
     			$window.localStorage.token = res.data.token;
@@ -33,6 +35,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 			});
 		};
 	} else {
+		$scope.loading = false;
 		$scope.user = sessionService.getUser();
     	$window.localStorage.token = sessionService.getToken();
 	}
