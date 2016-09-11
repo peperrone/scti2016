@@ -36,6 +36,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 				$scope.loading = false;
 				sessionService.setSession(res.data);
 				$scope.user = res.data.user;
+				console.log(res.data.user);
     			$window.localStorage.token = res.data.token;
 			}, function(err) {
 				$location.path('/');

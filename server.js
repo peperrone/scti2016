@@ -56,8 +56,6 @@ process.on('SIGINT', function() {
 mongoose.Promise = global.Promise;
 
 app.set('superSecret', config.secret);
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
 app.set('view engine', 'ejs');
 if(config.util.getEnv('NODE_ENV') !== 'test') {
     app.use(morgan('combined'));
