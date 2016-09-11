@@ -8,7 +8,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 	$scope.validateEmail = function() {
 		if ($scope.verificationCode) {
 			var url = 'api/users/' + $scope.user._id + '/validate';
-			$http.post(url, {token: token, verificationCode: $scope.verificationCode}).then(function(res) {
+			$http.post(url, {token: $window.localStorage.token, verificationCode: $scope.verificationCode}).then(function(res) {
 				$scope.user = res.data.user;
 				alert("Email verifiado com sucesso!");
 			}, function(err) {
@@ -16,6 +16,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 				$('#verification-code-input').addClass("invalid").removeClass("valid");
 			});
 		} else {
+			alert("Código inválido!");
 			$('#verification-code-input').removeClass("valid").addClass("invalid");
 		}
 	};
