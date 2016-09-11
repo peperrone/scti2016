@@ -13,10 +13,11 @@ app.use(bodyParser.json());
 app.use(express.static('assets'));
 
 var port = process.env.PORT || 8080;
+var DB_URI = process.env.MONGOLAB_URI || config.database;
 
 var isConnectedBefore = false;
 var connect = function() {
-  return mongoose.connect(config.database, {server: { auto_reconnect: true }}, function(err) {
+  return mongoose.connect(DB_URI, {server: { auto_reconnect: true }}, function(err) {
     if (err) {
       console.error('Failed to connect to mongo...', err);
     }
@@ -35,7 +36,7 @@ mongoose.connection.on('error', function() {
 
 mongoose.connection.on('disconnected', function(){
     console.log('Lost MongoDB connection...');
-    mongoose.connect(config.database, {server:{auto_reconnect:true, socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 }}, replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }});
+    mongoose.connect(DB_URI, {server:{auto_reconnect:true, socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 }}, replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }});
 });
 mongoose.connection.on('connected', function() {
 	isConnectedBefore = true;

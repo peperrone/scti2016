@@ -7,6 +7,11 @@ var nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const saltRounds = 10;
 
+var SECRET = process.env.secret || config.secret;
+var EMAIL_PREFIX = process.env.emailPrefix || config.emailPrefix;
+var EMAIL_SUFFIX = process.env.emailSuffix || config.emailSuffix;
+var EMAIL_PASSWORD = process.env.emailPassword || config.emailPassword;
+
 module.exports.signup = function(req, res, next) {
 	var user = new User(req.body);
 	user.isValidated = false;
@@ -36,7 +41,7 @@ module.exports.signin = function(req, res) {
 			bcrypt.compare(req.body.password, user.password, function(bcryptErr, bcryptRes) {
 		    	if (bcryptErr) throw bcryptErr;
 		    	if (bcryptRes) {
-		    		var token = jwt.sign(user, config.secret, {
+		    		var token = jwt.sign(user, SECRET, {
 			        	expiresIn: "2h"
 			        });
 
@@ -72,7 +77,7 @@ module.exports.edit = function(req, res){
 
 module.exports.isAuthenticated = function (req, res, next) {
     if (req.body.token) {
-	    jwt.verify(req.body.token, config.secret, function(err, decoded) {      
+	    jwt.verify(req.body.token, SECRET, function(err, decoded) {      
 	      if (err) {
 	        return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });    
 	      } else {
@@ -100,9 +105,9 @@ module.exports.authenticate = function(req, res) {
 };
 
 var sendEmail = function(email, htmlBody, subject, callback) {
-	var transporter = nodemailer.createTransport('smtps://' + config.emailPrefix + '%40' + config.emailSuffix + ':' + config.emailPassword + '@smtp.' + config.emailSuffix);
+	var transporter = nodemailer.createTransport('smtps://' + EMAIL_PREFIX + '%40' + EMAIL_SUFFIX + ':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX);
 	var mailOptions = {
-	    from: '"SCTI 2016" <' + config.emailPrefix + '@' + config.emailSuffix + '>', // sender address
+	    from: '"SCTI 2016" <' + EMAIL_PREFIX + '@' + EMAIL_SUFFIX + '>', // sender address
 	    to: email, // list of receivers
 	    subject: subject, // Subject line
 	    html: htmlBody
