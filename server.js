@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.static('assets'));
 
 var port = process.env.PORT || 8080;
-var DB_URI = process.env.MONGOLAB_URI || config.database;
+var DB_URI = process.env.database || config.database;
 
 var isConnectedBefore = false;
 var connect = function() {
