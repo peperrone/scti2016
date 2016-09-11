@@ -1,5 +1,7 @@
 angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $window, $location, $http, sessionService) {
 	$scope.loading = true;
+	$scope.loadingGiftCode = false;
+
 
 	$scope.openModal = function() {
 		$('#modal3').openModal();
@@ -10,7 +12,7 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 			var url = 'api/users/' + $scope.user._id + '/validate';
 			$http.post(url, {token: $window.localStorage.token, verificationCode: $scope.verificationCode}).then(function(res) {
 				$scope.user = res.data.user;
-				alert("Email verifiado com sucesso!");
+				alert("Email verificado com sucesso!");
 			}, function(err) {
 				console.log(err);
 				$('#verification-code-input').addClass("invalid").removeClass("valid");
@@ -60,16 +62,20 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
     });
 
     $scope.confirmGiftCode = function(){
+    	
     	if (!$scope.giftCode) {
     		$('#labelGiftCode').removeClass("data-error");
     		$('#giftCode').addClass("invalid").removeClass("valid");
     	} else {
 	    	var url = '/api/users/' + $scope.user._id + '/validateGiftCode';
+	    	$scope.loadingGiftCode = true;
 	    	$http.post(url, {user: $scope.user, giftCode: $scope.giftCode, token: sessionService.getToken()}).then(function(res) {
+				$scope.loadingGiftCode = false;
 				$('#modal3').closeModal();
 				$scope.user = res.data.user;
 				alert("Pagamento confirmado com sucesso!");
 			}, function(err) {
+				$scope.loadingGiftCode = false;
 				$('#labelGiftCode').attr("data-error", "Código inválido!");
 				$('#giftCode').addClass("invalid").removeClass("valid");
 			});
