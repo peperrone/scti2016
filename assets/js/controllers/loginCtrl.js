@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('loginCtrl', function($scope, $http, $location, sessionService) {
+angular.module('LoginCtrl', []).controller('loginCtrl', function($scope, $window, $http, $location, sessionService) {
 
     $scope.loading = false;
     $scope.login = function(){
@@ -12,6 +12,7 @@ angular.module('LoginCtrl', []).controller('loginCtrl', function($scope, $http, 
             $scope.loading = false;
     		$('#modal2').closeModal();
     		sessionService.setSession(res.data);
+            $window.localStorage.token = res.data.token;
     		$location.path('/user');
     	};
 

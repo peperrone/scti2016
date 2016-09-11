@@ -1,4 +1,4 @@
-angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http, $location, sessionService) {
+angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http, $window, $location, sessionService) {
     $scope.loading = false;
 	$scope.user = {};
 
@@ -39,6 +39,7 @@ angular.module('SignupCtrl', []).controller('signupCtrl', function($scope, $http
     				if (response.status === 200){
                         sendVerificationEmail(response.data);
 	    				sessionService.setSession(response.data);
+                        $window.localStorage.token = res.data.token;
 	    				$location.path('/user');
 	    			} else {
 	    				console.log(response);

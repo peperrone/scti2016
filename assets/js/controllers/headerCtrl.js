@@ -6,6 +6,14 @@ angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $wind
 	    $scope.user = newUser;
 	});
 
+	$scope.$watch(function(){
+    	return $window.localStorage.token;
+	}, function (oldToken, newToken) {
+	    console.log(newToken);
+	    console.log(oldToken);
+	    console.log("========")
+	});
+
 	$scope.logout = function() {
 		sessionService.setSession({});
 		$window.localStorage.token = null;

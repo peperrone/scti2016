@@ -16,6 +16,4 @@ angular.module('MainCtrl', [])
 		});
 	}
 
-	
-
 });
