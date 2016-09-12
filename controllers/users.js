@@ -105,16 +105,18 @@ module.exports.authenticate = function(req, res) {
 };
 
 var sendEmail = function(email, htmlBody, subject, callback) {
-	var transporter = nodemailer.createTransport('smtps://' + EMAIL_PREFIX + '%40' + EMAIL_SUFFIX + ':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX);
+	var transporterURL = 'smtps://' + EMAIL_PREFIX + '%40' + EMAIL_SUFFIX + ':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX;
+	var transporter = nodemailer.createTransport(transporterURL);
+	console.log(transporter);
 	var mailOptions = {
 	    from: '"SCTI 2016" <' + EMAIL_PREFIX + '@' + EMAIL_SUFFIX + '>', // sender address
 	    to: email, // list of receivers
 	    subject: subject, // Subject line
 	    html: htmlBody
 	};
-	console.log(mailOptions);
 
 	transporter.sendMail(mailOptions, function(error, info){
+		console.log(error);
 	    if(error)
 	    	callback(error);
 	    else
@@ -138,7 +140,6 @@ module.exports.sendVerification = function(req, res, next) {
 				  else {
 				  	user.verificationCode = verificationCode;
 				    user.save();
-				    console.log(user);
 				    res.json({success: true, message: "Verification code sent succesfully!", user: user});
 				  }
 				});
