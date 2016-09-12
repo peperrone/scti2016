@@ -10,7 +10,7 @@ module.exports.listener = function(req, res) {
 		request.post({url:'https://www.sandbox.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
 			if (!err && response.statusCode == 200) {
 			    if (body === "VERIFIED") {
-			    	User.find({_id: req.body.custom}, function(mongoErr, user){
+			    	User.findOne({_id: req.body.custom}, function(mongoErr, user){
 			    		if (mongoErr) {
 			    			console.log(mongoErr);
 			    		} else if (!user) {
