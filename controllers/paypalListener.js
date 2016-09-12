@@ -7,7 +7,7 @@ module.exports.listener = function(req, res) {
 		var newBody = {cmd: "_notify-validate"};
 		for(var key in req.body) 
 			newBody[key] = req.body[key];
-		request.post({url:'https://www.sandbox.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
+		request.post({url:'https://www.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
 			if (!err && response.statusCode == 200) {
 			    if (body === "VERIFIED") {
 			    	User.findOne({_id: req.body.custom}, function(mongoErr, user){

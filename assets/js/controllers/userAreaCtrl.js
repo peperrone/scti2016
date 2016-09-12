@@ -1,8 +1,6 @@
 angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $window, $location, $http, sessionService) {
 	$scope.loading = true;
 	$scope.loadingGiftCode = false;
-	$scope.paypalApproval = false;
-
 
 	$scope.openModal = function() {
 		$('#modal3').openModal();
@@ -38,9 +36,6 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 				sessionService.setSession(res.data);
 				$scope.user = res.data.user;
     			$window.localStorage.token = res.data.token;
-    			if ($location.search().cm === $scope.user._id) {
-					$scope.paypalApproval = true;
-				}
 			}, function(err) {
 				$location.path('/');
 			});
