@@ -20,11 +20,11 @@ router.post('/paypalReturn', function(req, res) {
 		var newBody = {cmd: "_notify-validate"};
 		for(var key in req.body) 
 			newBody[key] = req.body[key];
-		request.post({url:'https://ipnpb.paypal.com/cgi-bin/webscr', form: newBody}, function(err,httpResponse,body){
-			if (!error && response.statusCode == 200) {
+		request.post({url:'https://www.sandbox.paypal.com/cgi-bin/webscr', form: newBody}, function(err,httpResponse,body){
+			if (!err && response.statusCode == 200) {
 			    console.log(body);
 			} else {
-				console.log(error);
+				console.log(err);
 			}
 			res.json("yay");
 		})
