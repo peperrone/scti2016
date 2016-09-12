@@ -38,6 +38,9 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 				sessionService.setSession(res.data);
 				$scope.user = res.data.user;
     			$window.localStorage.token = res.data.token;
+    			if ($location.search().cm === $scope.user._id) {
+					$scope.paypalApproval = true;
+				}
 			}, function(err) {
 				$location.path('/');
 			});
@@ -46,10 +49,6 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 		$scope.loading = false;
 		$scope.user = sessionService.getUser();
     	$window.localStorage.token = sessionService.getToken();
-	}
-
-	if ($location.search().cm === user._id) {
-		$scope.paypalApproval = true;
 	}
 
 	$('#paypal').on('click', function(){
