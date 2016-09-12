@@ -174,8 +174,8 @@ module.exports.lostPassword = function(req, res) {
 			res.status(409).json({success: false, message: "Email not found!"});
 		} else {
 			var subject = "SCTI - Link para redefinição de senha";
-			//TODO: send link to change user password. 
-			var htmlBody = "Soon!";
+			var passwordResetLink = "scti.herokuapp.com/lostPassword/" + user._id;
+			var htmlBody = "Esqueceu sua senha?<br>Por favor clique nesse link para definir uma nova senha:" + passwordResetLink +"<br>Se não foi você que solicitou esse e-mail, por favor ignore-o";
 			sendEmail(req.body.email, htmlBody, subject, function(error) {
 				if (error) {
 					res.status(500).json({success: false, message: error});

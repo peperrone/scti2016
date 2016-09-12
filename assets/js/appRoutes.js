@@ -4,6 +4,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	        templateUrl: 'routes/home',
 	        controller: 'mainCtrl'
 	    })
+	    .when('/forgotpassword', {
+	        templateUrl: 'routes/forgotpassword',
+	        controller: 'forgotPasswordCtrl'
+	    })
 	    .when('/user', {
 	        templateUrl: 'routes/user',
 	        controller: 'userAreaCtrl'

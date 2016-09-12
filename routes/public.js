@@ -14,6 +14,10 @@ router.get('/', function(req, res) {
 	res.render("index");
 });
 
+router.get('/forgotpassword', function(req, res) {
+	res.render("forgotPassword");
+});
+
 router.get('*', function(req, res) {
 	res.json("OOooooooops! Nothing to do here. :(");
 });
