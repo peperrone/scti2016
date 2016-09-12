@@ -105,7 +105,7 @@ module.exports.authenticate = function(req, res) {
 };
 
 var sendEmail = function(email, htmlBody, subject, callback) {
-	var transporterURL = 'smtps://' + EMAIL_PREFIX + '%40' + EMAIL_SUFFIX + ':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX;
+	var transporterURL = 'smtps://' + EMAIL_PREFIX':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX;
 	var transporter = nodemailer.createTransport(transporterURL);
 	console.log(transporter);
 	var mailOptions = {
