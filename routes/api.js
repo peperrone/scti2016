@@ -14,7 +14,21 @@ router.post('/users/:id/validateGiftCode',
 router.post('/lostPassword', userCtrl.lostPassword);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 router.post('/paypalReturn', function(req, res) {
-	console.log(req);
+	console.log(req.body);
+	if (req.body){
+		var newBody = {cmd: "_notify-validate"};
+		for(var key in req.body) 
+			newBody[key] = req.body[key];
+		request.post({url:'https://ipnpb.paypal.com/cgi-bin/webscr', form: newBody}, function(err,httpResponse,body){
+			if (!error && response.statusCode == 200) {
+			    console.log(body);
+			} else {
+				console.log(error);
+			}
+			res.json("yay");
+		})
+	}
+	
 });
 
 module.exports = router;
