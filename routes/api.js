@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var userCtrl = require('../controllers/users');
 
 router.post('/signin', userCtrl.signin);
