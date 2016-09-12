@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var userCtrl = require('../controllers/users');
+var paypalCtrl = require('../controllers/paypalListener');
 
 router.post('/signin', userCtrl.signin);
 router.post('/signup', userCtrl.signup);
@@ -14,35 +14,6 @@ router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.post('/lostPassword', userCtrl.lostPassword);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
-router.post('/paypalReturn', function(req, res) {
-	console.log(req.body);
-	if (req.body){
-		var newBody = {cmd: "_notify-validate"};
-		for(var key in req.body) 
-			newBody[key] = req.body[key];
-		request.post({url:'https://www.sandbox.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
-			if (!err && response.statusCode == 200) {
-			    if (body === "VERIFIED") {
-			    	User.find({_id: req.body.custom}, function(mongoErr, user){
-			    		if (mongoErr) {
-			    			console.log(mongoErr);
-			    		} else if (!user) {
-			    			console.log("User not found");
-			    		} else {
-			    			user.hasPayed = true;
-			    			user.paymentMethod = 'paypal';
-			    			user.transaction = req.body;
-			    			user.save();
-			    		}
-			    	})
-			    }
-			} else {
-				console.log(err);
-			}
-			res.json("yay");
-		})
-	}
-	
-});
+router.post('/paypalReturn', paypalCtrl.listener);
 
 module.exports = router;
