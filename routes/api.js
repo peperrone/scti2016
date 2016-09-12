@@ -22,7 +22,20 @@ router.post('/paypalReturn', function(req, res) {
 			newBody[key] = req.body[key];
 		request.post({url:'https://www.sandbox.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
 			if (!err && response.statusCode == 200) {
-			    console.log(body);
+			    if (body === "VERIFIED") {
+			    	User.find({_id: req.body.custom}, function(mongoErr, user){
+			    		if (mongoErr) {
+			    			console.log(mongoErr);
+			    		} else if (!user) {
+			    			console.log("User not found");
+			    		} else {
+			    			user.hasPayed = true;
+			    			user.paymentMethod = 'paypal';
+			    			user.transaction = req.body;
+			    			user.save();
+			    		}
+			    	})
+			    }
 			} else {
 				console.log(err);
 			}
