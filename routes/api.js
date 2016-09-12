@@ -13,5 +13,8 @@ router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.post('/lostPassword', userCtrl.lostPassword);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
+router.post('/paypalReturn', function(req, res) {
+	console.log(req);
+});
 
 module.exports = router;
