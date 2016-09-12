@@ -206,7 +206,6 @@ button.sleep{
 
 #local-pay, #paypal{
 	max-width: 450px;
-	width: 45vw;
 	margin-bottom: 30px;
 	transition: 1s;
 }
