@@ -107,7 +107,6 @@ module.exports.authenticate = function(req, res) {
 var sendEmail = function(email, htmlBody, subject, callback) {
 	var transporterURL = 'smtps://' + EMAIL_PREFIX + ':' + EMAIL_PASSWORD + '@smtp.' + EMAIL_SUFFIX;
 	var transporter = nodemailer.createTransport(transporterURL);
-	console.log(transporter);
 	var mailOptions = {
 	    from: '"SCTI 2016" <' + EMAIL_PREFIX + '@' + EMAIL_SUFFIX + '>', // sender address
 	    to: email, // list of receivers
@@ -171,21 +170,68 @@ module.exports.lostPassword = function(req, res) {
 	}, function(err, user) {
 		if (err) throw err;
 		if (!user) {
-			res.status(409).json({success: false, message: "Email not found!"});
+			res.status(409).json({success: false, message: "User not found!"});
 		} else {
-			var subject = "SCTI - Link para redefinição de senha";
-			var passwordResetLink = "scti.herokuapp.com/lostPassword/" + user._id;
-			var htmlBody = "Esqueceu sua senha?<br>Por favor clique nesse link para definir uma nova senha:" + passwordResetLink +"<br>Se não foi você que solicitou esse e-mail, por favor ignore-o";
-			sendEmail(req.body.email, htmlBody, subject, function(error) {
-				if (error) {
-					res.status(500).json({success: false, message: error});
-				} else {
-					res.json({success: true, message: "Link to change password was sent!"});
-				}
+			if (err) throw err;
+			var resetCode = null;
+			crypto.randomBytes(16, (err, buf) => {
+				if (err) return;
+				resetCode = `${buf.toString('hex')}`;
+				var subject = "SCTI - Link para redefinição de senha";
+				var passwordResetLink = "scti.herokuapp.com/newpassword/" + resetCode;
+				var htmlBody = "Esqueceu sua senha?<br>Por favor clique nesse link para definir uma nova senha:" + passwordResetLink +"<br>Se não foi você que solicitou esse e-mail, por favor ignore-o";
+				sendEmail(req.body.email, htmlBody, subject, function(error) {
+					if (error) {
+						res.status(500).json({success: false, message: "Something wrong with nodemailer or internet connection!", error: error});
+					} else {
+						user.resetCode = resetCode;
+						user.save();
+						res.json({success: true, message: "Link to change password was sent!"});
+					}
+				});
 			});
 		}
 	});
 };
+
+module.exports.resetPassword = function(req, res) {
+	User.findOne({resetCode: req.body.resetCode}, function(err, user){
+		if (!user) {
+			res.status(409).json({success: false, message: "User not found"});
+		} else if (err) {
+			console.log(err);
+			res.status(500).json({success: false, message: "Something wrong!"});
+		} else {
+			bcrypt.hash(req.body.newPassword, saltRounds, function(err, hash){
+				if (err) {
+					res.status(500).json({success: false, message: err.errmsg});
+					return;
+				}
+				user.password = hash;
+				user.resetCode = null;
+				user.save(function(err) {
+					if (err) {
+						res.status(409).json({success: false, message: err.errmsg});
+					}
+					res.json({success: true, message: "Password updated successfully!"});
+				});
+			});
+		}
+	});
+}
+
+module.exports.resetCode = function(req, res) {
+	User.findOne({resetCode: req.params.resetCode}, function(err, user){
+		if (!user) {
+			res.status(409).json({success: false, message: "User not found"});
+		} else if (err) {
+			console.log(err);
+			res.status(500).json({success: false, message: "Something wrong!"});
+		} else {
+			res.status(200).json({success: true, resetCode: user.resetCode});
+		}
+	})
+}
 
 module.exports.validateGiftCode = function(req, res) {
 	User.findOne({_id: req.params.id}, function(err, user) {

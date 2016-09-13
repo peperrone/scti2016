@@ -13,6 +13,8 @@ router.post('/users/:id/validate',
 router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.post('/lostPassword', userCtrl.lostPassword);
+router.put('/resetPassword', userCtrl.resetPassword);
+router.get('/resetCode/:resetCode', userCtrl.resetCode);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 router.post('/paypalReturn', paypalCtrl.listener);
 

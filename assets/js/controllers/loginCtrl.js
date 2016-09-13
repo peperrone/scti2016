@@ -28,5 +28,10 @@ angular.module('LoginCtrl', []).controller('loginCtrl', function($scope, $window
     	$http.post('/api/signin', user).then(successCallback, errorCallback);
     	$scope.loading = true;
     };
+
+    $scope.forgotPassword = function() {
+        $('#modal2').closeModal();
+        $location.path('/forgotpassword');
+    }
     
 });
