@@ -2,6 +2,21 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 	$scope.loading = true;
 	$scope.loadingGiftCode = false;
 
+	var user = sessionService.getUser();
+	if (!user){
+		sessionService.checkAuth(function(isAuthenticated){
+			if (isAuthenticated){
+				$scope.loading = false;
+				$scope.user = sessionService.getUser();
+			} else {
+				$location.path('/');
+			}
+		});
+	} else {
+		$scope.loading = false;
+		$scope.user = sessionService.getUser();
+    	$window.localStorage.token = sessionService.getToken();
+	}
 
 	$scope.openModal = function() {
 		$('#modal3').openModal();
@@ -26,27 +41,6 @@ angular.module('UserAreaCtrl', []).controller('userAreaCtrl', function($scope, $
 			$('#verification-code-input').removeClass("valid").addClass("invalid");
 		}
 	};
-
-	var user = sessionService.getUser();
-
-	if (!user){
-		var token = $window.localStorage.token;
-		if (token) {
-			$http.post('/api/authenticate', {token: token}).then(function(res) {
-				$scope.loading = false;
-				sessionService.setSession(res.data);
-				$scope.user = res.data.user;
-				console.log(res.data.user);
-    			$window.localStorage.token = res.data.token;
-			}, function(err) {
-				$location.path('/');
-			});
-		};
-	} else {
-		$scope.loading = false;
-		$scope.user = sessionService.getUser();
-    	$window.localStorage.token = sessionService.getToken();
-	}
 
 	$('#paypal').on('click', function(){
 		if($('#local-pay').hasClass('active')){

@@ -8,5 +8,7 @@ module.exports = mongoose.model('User', new Schema({
     isValidated: Boolean,
     paymentMethod: String,
     hasPayed: Boolean,
-    verificationCode: String
+    verificationCode: String,
+    transaction: Object,
+    resetCode: {type: String, index: {unique: true}}
 }));

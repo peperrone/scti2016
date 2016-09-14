@@ -1,4 +1,4 @@
-app.service('sessionService', function() {
+app.service('sessionService', function($window, $http) {
 
   var session = {};
 
@@ -14,10 +14,28 @@ app.service('sessionService', function() {
       return session.user;
   };
 
+  var checkAuth = function(callback){
+    if (session.user) callback(true);
+    var token = $window.localStorage.token;
+    if (token) {
+      $http.post('/api/authenticate', {token: token}).then(function(res) {
+        session = res.data;
+        callback(true);
+      }, function(err) {
+        if (err.data.message)
+          console.log(err.data.message);
+        callback(false);
+      });
+    } else {
+      callback(false);
+    }
+  }
+
   return {
     setSession: setSession,
     getToken: getToken,
-    getUser: getUser
+    getUser: getUser,
+    checkAuth: checkAuth
   };
 
 });

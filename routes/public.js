@@ -10,12 +10,16 @@ router.get('/user', function(req, res) {
 	res.render("index");
 });
 
-router.get('/', function(req, res) {
+router.get('/forgotpassword', function(req, res) {
 	res.render("index");
 });
 
-router.get('/forgotpassword', function(req, res) {
-	res.render("forgotPassword");
+router.get('/newpassword/:userId', function(req, res) {
+	res.render("index");
+});
+
+router.get('/', function(req, res) {
+	res.render("index");
 });
 
 router.get('*', function(req, res) {

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var userCtrl = require('../controllers/users');
+var paypalCtrl = require('../controllers/paypalListener');
 
 router.post('/signin', userCtrl.signin);
 router.post('/signup', userCtrl.signup);
@@ -13,23 +13,9 @@ router.post('/users/:id/validate',
 router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.post('/lostPassword', userCtrl.lostPassword);
+router.put('/resetPassword', userCtrl.resetPassword);
+router.get('/resetCode/:resetCode', userCtrl.resetCode);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
-router.post('/paypalReturn', function(req, res) {
-	console.log(req.body);
-	if (req.body){
-		var newBody = {cmd: "_notify-validate"};
-		for(var key in req.body) 
-			newBody[key] = req.body[key];
-		request.post({url:'https://ipnpb.paypal.com/cgi-bin/webscr', form: newBody}, function(err,httpResponse,body){
-			if (!error && response.statusCode == 200) {
-			    console.log(body);
-			} else {
-				console.log(error);
-			}
-			res.json("yay");
-		})
-	}
-	
-});
+router.post('/paypalReturn', paypalCtrl.listener);
 
 module.exports = router;
