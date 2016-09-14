@@ -1,14 +1,32 @@
-angular.module('ForgotPasswordCtrl', []).controller('forgotPasswordCtrl', function($scope, $window, $http) {
-	
+angular.module('ForgotPasswordCtrl', []).controller('forgotPasswordCtrl', function($scope, $http, $location, sessionService) {
+	$scope.loading = true;
+
 	var user = $scope.user;
+	sessionService.checkAuth(function(isAuthenticated){
+		if (isAuthenticated){
+			$location.path('/user');
+		} else {
+			$scope.loading = false;
+		}
+	});
+
 	$scope.sendEmail = function(data) {
-            var url = '/api/lostPassword/';
-            if(user){
-            	$http.post(url, user).then(function(res) {
-                alert("Um link para redefinir sua senha foi enviado para seu e-mail!");
-	            }, function(err) {
-	                console.log(err);
-	            });
-            }  
-        }
+		$scope.loading = true;
+        var url = '/api/lostPassword/';
+        if($scope.email){
+        	$http.post(url, {email: $scope.email}).then(function(res) {
+        		$scope.loading = false;
+            	alert("Um link para redefinir sua senha foi enviado para seu e-mail!");
+            	$location.path('/');
+            }, function(err) {
+            	$scope.loading = false;
+                if (err.data && err.data.message.includes("User not found")) {
+	    			$('#email2').removeClass("valid").addClass("invalid");
+	    		} else {
+	    			alert("Internal server error! Tente novamente mais tarde!");
+	    			$location.path('/');
+	    		}
+            });
+        }  
+	}
 });

@@ -1,19 +1,16 @@
 angular.module('MainCtrl', [])
-	.controller('mainCtrl', function($scope, $window, $http, $location, sessionService) {
+	.controller('mainCtrl', function($scope, $location, sessionService) {
 	
+	$scope.loading = true;
 	$scope.openModal = function() {
 		$('#modal1').openModal();
 	};
 
-	var token = $window.localStorage.token;
-	if (token) {
-		$http.post('/api/authenticate', {token: token}).then(function(res) {
-			sessionService.setSession(res.data);
+	sessionService.checkAuth(function(isAuthenticated){
+		if (isAuthenticated){
 			$location.path('/user');
-		}, function(err) {
-			if (err.data.message)
-				console.log(err.data.message);
-		});
-	}
-
+		} else {
+			$scope.loading = false;
+		}
+	});
 });
