@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="css/table.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body ng-app="sctiAppAdmin">
+<h1>Users table</h1>
+  <table ng-controller="adminCtrl" class="rwd-table">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>isVerified?</th>
+      <th>hasPaid?</th>
+    </tr>
+    <tr ng-repeat="user in users">
+      <td data-th="Name">{{user.name}}</td>
+      <td data-th="Email">{{user.email}}</td>
+      <td data-th="isVerified?">{{user.isValidated}}</td>
+      <td data-th="hasPaid?">{{user.hasPayed}}</td>
+    </tr>
+  </table>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="js/controllers/admin.js"></script>
+</body>
+</html>
+
