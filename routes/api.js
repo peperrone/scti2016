@@ -5,6 +5,7 @@ var paypalCtrl = require('../controllers/paypalListener');
 
 router.post('/signin', userCtrl.signin);
 router.post('/signup', userCtrl.signup);
+router.get('/users', userCtrl.getUsers);
 router.put('/users/:id', userCtrl.isAuthenticated, userCtrl.edit);
 router.post('/users/:id/sendVerification', 
 			userCtrl.isAuthenticated, userCtrl.sendVerification);

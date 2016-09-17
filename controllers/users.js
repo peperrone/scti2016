@@ -12,6 +12,16 @@ var EMAIL_PREFIX = process.env.emailPrefix || config.emailPrefix;
 var EMAIL_SUFFIX = process.env.emailSuffix || config.emailSuffix;
 var EMAIL_PASSWORD = process.env.emailPassword || config.emailPassword;
 
+module.exports.getUsers = function(req, res) {
+	User.find({}, function(err, users){
+		if (err) {
+			res.status(500).json({success: false, message: err.errmsg});
+		} else if (users) {
+			res.json({success: true, users: users});
+		}
+	})
+};
+
 module.exports.signup = function(req, res, next) {
 	var user = new User(req.body);
 	user.isValidated = false;
