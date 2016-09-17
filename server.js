@@ -9,15 +9,26 @@ var apiRoutes = require('./routes/api');
 var viewRoutes = require('./routes/public').router;
 
 var sass = require('node-sass');
+var fs = require('fs');
 
 sass.render({
-    file: './assets/css/main',
-    outFile: './assets/css/style'
+    file: './assets/css/main.sass',
+    outFile: './assets/css/style.css',
+    outputStyle: 'compressed'
 }, function(error, result) {
     if (error) {
         console.log(error.message);
     } else {
-        console.log("CSS created successfully!");
+      console.log("File compiled successfully!");
+      fs.writeFile('./assets/css/style.css', result.css, function(err){
+        if(!err){
+            console.log("CSS created successfully!");
+          }
+        else{
+          console.log(err.message);
+        }
+      })
+
     }
 });
 
