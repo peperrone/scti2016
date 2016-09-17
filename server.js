@@ -8,6 +8,19 @@ var config = require('config');
 var apiRoutes = require('./routes/api');
 var viewRoutes = require('./routes/public').router;
 
+var sass = require('node-sass');
+
+sass.render({
+    file: './assets/css/main',
+    outFile: './assets/css/style'
+}, function(error, result) {
+    if (error) {
+        console.log(error.message);
+    } else {
+        console.log("CSS created successfully!");
+    }
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('assets'));
