@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var userCtrl = require('../controllers/users');
 var paypalCtrl = require('../controllers/paypalListener');
+var auth = require('./public').auth;
 
 router.post('/signin', userCtrl.signin);
 router.post('/signup', userCtrl.signup);
-router.get('/users', userCtrl.getUsers);
+router.get('/users', auth, userCtrl.getUsers);
 router.put('/users/:id', userCtrl.isAuthenticated, userCtrl.edit);
 router.post('/users/:id/sendVerification', 
 			userCtrl.isAuthenticated, userCtrl.sendVerification);

@@ -48,4 +48,7 @@ router.get('*', function(req, res) {
 	res.json("OOooooooops! Nothing to do here. :(");
 });
 
-module.exports = router;
+module.exports = {
+    auth: auth,
+    router: router
+};
