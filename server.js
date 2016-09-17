@@ -6,7 +6,7 @@ var mongoose   = require('mongoose');
 
 var config = require('config');
 var apiRoutes = require('./routes/api');
-var viewRoutes = require('./routes/public');
+var viewRoutes = require('./routes/public').router;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
