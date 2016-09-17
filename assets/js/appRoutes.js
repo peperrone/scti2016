@@ -16,9 +16,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	        templateUrl: 'routes/user',
 	        controller: 'userAreaCtrl'
 	    })
-	    .when('/admin', {
-	        templateUrl: 'routes/admin',
-	        controller: 'adminCtrl'
+	    .when('/schedule', {
+	        templateUrl: 'routes/schedule',
+	        controller: 'scheduleCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
