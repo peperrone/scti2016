@@ -15,6 +15,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	    .when('/user', {
 	        templateUrl: 'routes/user',
 	        controller: 'userAreaCtrl'
+	    })
+	    .when('/admin', {
+	        templateUrl: 'routes/admin',
+	        controller: 'adminCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
