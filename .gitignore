@@ -4,3 +4,5 @@ config.js
 config/default.json
 config/dev.json
 config/test.json
+assets/css/style.css
+.sass-cache/
