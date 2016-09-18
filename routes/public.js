@@ -19,29 +19,19 @@ var auth = function(req, res, next){
     }
 };
 
+var commonRoutes = ['/user', '/forgotpassword', '/newpassword/:userId', '/schedule', '/'];
+
 router.get('/routes/:name', function (req, res){
 	var name = req.params.name;
   	res.render(name);
 });
 
-router.get('/user', function(req, res) {
-	res.render("index");
-});
-
-router.get('/forgotpassword', function(req, res) {
-	res.render("index");
-});
-
-router.get('/newpassword/:userId', function(req, res) {
+router.get(commonRoutes, function(req, res) {
 	res.render("index");
 });
 
 router.get('/admin', auth, function(req, res) {
 	res.render("admin");
-});
-
-router.get('/', function(req, res) {
-	res.render("index");
 });
 
 router.get('*', function(req, res) {
