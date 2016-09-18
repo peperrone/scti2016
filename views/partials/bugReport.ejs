@@ -1,0 +1,29 @@
+<div ng-cloak class="floating-form" id="contact_form" ng-controller="bugReportCtrl">
+    <div class="contact-opener">Achou um bug?</div>
+    <div class="floating-form-heading"><h5>Fale conosco</h5></div>
+    <div id="contact_results"></div>
+    <div id="contact_body">
+        <div class="row">
+            <div class="container center section no-pad-bot" ng-show="loading">
+              <img src="imgs/loading.gif">
+            </div>
+            <form ng-hide="loading" class="col s12">
+                <div class="input-field col s12">
+                  <input id="icon_prefix" ng-model="visitor.name" type="text" class="validate">
+                  <label for="icon_prefix">Nome</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="icon_email" ng-model="visitor.email" type="email" class="validate">
+                  <label for="icon_email">Email</label>
+                </div>
+                <div class="input-field col s12">
+                  <textarea id="icon_message" ng-model="visitor.message" type="text" class="validate materialize-textarea"></textarea>
+                  <label for="icon_message">Mensagem</label>
+                </div>
+                <div class="input-field col s12">
+                    <button ng-click="submit(visitor)" type="submit" class="waves-effect waves-light btn scti-blue center">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
