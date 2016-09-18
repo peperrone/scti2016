@@ -19,5 +19,6 @@ router.put('/resetPassword', userCtrl.resetPassword);
 router.get('/resetCode/:resetCode', userCtrl.resetCode);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 router.post('/paypalReturn', paypalCtrl.listener);
+router.post('/sendBugReport', userCtrl.sendBugReport);
 
 module.exports = router;

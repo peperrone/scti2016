@@ -266,3 +266,14 @@ module.exports.validateGiftCode = function(req, res) {
 	  	}
 	});
 };
+
+module.exports.sendBugReport = function(req, res) {
+	var visitor = req.body;
+	sendEmail("scti@uenf.br", JSON.stringify(visitor), "Bug Report", function(error){
+		if (!error) {
+			res.json({success: true, message: "Email sent!"});
+		} else {
+			res.status(500).json({success: false, message: error});
+		}
+	});
+};
