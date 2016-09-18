@@ -7,10 +7,6 @@ angular.module('MainCtrl', [])
 	};
 
 	sessionService.checkAuth(function(isAuthenticated){
-		if (isAuthenticated){
-			$location.path('/user');
-		} else {
-			$scope.loading = false;
-		}
+		$scope.loading = false;
 	});
 });
