@@ -1,13 +1,17 @@
 <nav class="scti-blue" role="navigation" ng-controller="headerCtrl">
-  <div class="nav-wrapper container"><a id="logo-container" class="brand-logo" href="#"><img class="logo-img" src="imgs/logo.png"></a>
+  <div class="nav-wrapper container"><a id="logo-container" class="brand-logo" href="/"><img class="logo-img" src="imgs/logo.png"></a>
     <ul class="right hide-on-med-and-down">
+      <li><a class="modal-trigger" href="/schedule">Programação</a></li>
+      <li><a class="modal-trigger ng-cloak" href="/user" ng-show="user">{{user.name.split(" ")[0]}}</a></li>
       <li><a class="modal-trigger ng-cloak" ng-click="openModal()" ng-hide="user">Login</a></li>
       <li><a class="ng-cloak" ng-click="logout()" ng-show="user">Logout</a></li>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
-      <li><a class="ng-cloak" ng-click="openModal()" ng-hide="user">Login</a></li>
-      <li><a class="ng-cloak" ng-click="logout()" ng-show="user">Logout</a></li>
+      <li><a class="ng-cloak" ng-click="closeSideNav()" href="/schedule">Programação</a></li>
+      <li><a class="ng-cloak" ng-click="closeSideNav()" href="/user" ng-show="user">{{user.name.split(" ")[0]}}</a></li>
+      <li><a class="ng-cloak" ng-click="openModal(); closeSideNav()" ng-hide="user">Login</a></li>
+      <li><a class="ng-cloak" ng-click="logout(); closeSideNav()" ng-show="user">Logout</a></li>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>

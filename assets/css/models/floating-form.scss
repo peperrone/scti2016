@@ -6,6 +6,7 @@
     right: 10px;
     position: fixed; /*Form position fixed*/
     background-color: #ebf5fb;
+    z-index: 1000;
     }
 .contact-opener { /*opener button*/
     position: absolute;
@@ -18,4 +19,5 @@
     cursor: pointer;
     border-radius: 5px 5px 0px 0px;
     background-color: #2b7199;
+    z-index: 1000;
 }
