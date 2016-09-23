@@ -11,12 +11,14 @@
       <th>Email</th>
       <th>isVerified?</th>
       <th>hasPaid?</th>
+      <th>Created at</th>
     </tr>
     <tr ng-repeat="user in users">
       <td data-th="Name">{{user.name}}</td>
       <td data-th="Email">{{user.email}}</td>
       <td data-th="isVerified?">{{user.isValidated}}</td>
       <td data-th="hasPaid?">{{user.hasPayed}}</td>
+      <td ng-cloak data-th="createdAt">{{createdAt(user._id)}}</td>
     </tr>
   </table>
   <!--  Scripts-->
