@@ -8,6 +8,8 @@ module.exports.listener = function(req, res) {
 		for(var key in req.body) 
 			newBody[key] = req.body[key];
 		request.post({url:'https://www.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
+			console.log(response);
+			console.log(body);
 			if (!err && response.statusCode == 200) {
 			    if (body === "VERIFIED") {
 			    	User.findOne({_id: req.body.custom}, function(mongoErr, user){
