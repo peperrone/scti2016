@@ -19,6 +19,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	    .when('/schedule', {
 	        templateUrl: 'routes/schedule',
 	        controller: 'scheduleCtrl'
+	    })
+			.when('/gifts', {
+	        templateUrl: 'routes/gifts',
+	        controller: 'giftsCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
