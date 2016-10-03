@@ -15,7 +15,10 @@
    id="svg4778"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="casadocodigo.svg">
+   sodipodi:docname="casadocodigo.svg"
+   inkscape:export-filename="/home/peperrone/Development/SCTI/website/scti2016/assets/imgs/casadocodigo.png"
+   inkscape:export-xdpi="110"
+   inkscape:export-ydpi="110">
   <defs
      id="defs4780" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="204.82114"
-     inkscape:cy="123.27973"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-146.95986"
+     inkscape:cy="0.39825646"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
