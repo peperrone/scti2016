@@ -85,6 +85,21 @@ module.exports.edit = function(req, res){
 	});
 };
 
+module.exports.changeEmail = function(req, res, next){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    if (req.body.email) {
+	    	user.email = req.body.email;
+	    	user.isValidated = false;
+	    }
+	    user.save();
+	    return next();
+	  }
+	});
+};
+
 module.exports.isAuthenticated = function (req, res, next) {
     if (req.body.token) {
 	    jwt.verify(req.body.token, SECRET, function(err, decoded) {      
@@ -134,7 +149,6 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 }
 
 module.exports.sendVerification = function(req, res, next) {
-
 	var verificationCode = null;
 	var subject = 'SCTI - Codigo de verificacao de email';
 	crypto.randomBytes(16, (err, buf) => {
