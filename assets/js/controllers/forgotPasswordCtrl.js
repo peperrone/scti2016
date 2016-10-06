@@ -21,12 +21,15 @@ angular.module('ForgotPasswordCtrl', []).controller('forgotPasswordCtrl', functi
             }, function(err) {
             	$scope.loading = false;
                 if (err.data && err.data.message.includes("User not found")) {
-	    			$('#email2').removeClass("valid").addClass("invalid");
+	    			$('#emailP2').removeClass("valid").addClass("invalid");
 	    		} else {
 	    			alert("Internal server error! Tente novamente mais tarde!");
 	    			$location.path('/');
 	    		}
             });
-        }  
+        } else {
+        	$scope.loading = false;
+        	$('#emailP2').removeClass("valid").addClass("invalid");
+        }
 	}
 });
