@@ -7,15 +7,16 @@ var auth = require('./public').auth;
 router.post('/signin', userCtrl.signin);
 router.post('/signup', userCtrl.signup);
 router.get('/users', auth, userCtrl.getUsers);
-router.put('/users/:id', userCtrl.isAuthenticated, userCtrl.edit);
 router.post('/users/:id/sendVerification', 
 			userCtrl.isAuthenticated, userCtrl.sendVerification);
 router.post('/users/:id/validate', 
 			userCtrl.isAuthenticated, userCtrl.validate);
 router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
-router.post('/users/:id/changeEmail',
+router.put('/users/:id/changeEmail',
 			userCtrl.isAuthenticated, userCtrl.changeEmail, userCtrl.sendVerification);
+router.put('/users/:id/changeName',
+			userCtrl.isAuthenticated, userCtrl.changeName);
 router.post('/lostPassword', userCtrl.lostPassword);
 router.put('/resetPassword', userCtrl.resetPassword);
 router.get('/resetCode/:resetCode', userCtrl.resetCode);
