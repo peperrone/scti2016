@@ -1,6 +1,6 @@
 angular.module('MainCtrl', [])
 	.controller('mainCtrl', function($scope, $location, sessionService) {
-	
+
 	$scope.loading = true;
 	$scope.openModal = function() {
 		$('#modal1').openModal();
@@ -9,4 +9,5 @@ angular.module('MainCtrl', [])
 	sessionService.checkAuth(function(isAuthenticated){
 		$scope.loading = false;
 	});
+	$('select').material_select();
 });
