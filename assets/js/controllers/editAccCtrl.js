@@ -20,7 +20,15 @@ angular.module('EditAccCtrl', []).controller('editAccCtrl', function($scope, $ht
 	}
 
 	$scope.changeName = function(newName){
-		//TODO: http request
+		if (!newName) return;
+		var url = 'api/users/' + $scope.user._id + '/changeName';
+		$http.put(url, {token: sessionService.getToken(), name: newName}).then(function(res){
+			$scope.newName = "";
+			$scope.user = res.data.user;
+			sessionService.setSession({token: sessionService.getToken(), user: $scope.user});
+		}, function(err){
+			console.log(err);
+		})
 	}
 
 	$scope.changeEmail = function(newEmail){

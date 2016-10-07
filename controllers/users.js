@@ -69,16 +69,12 @@ module.exports.signin = function(req, res) {
 	});
 };
 
-module.exports.edit = function(req, res){
+module.exports.changeName = function(req, res){
 	User.findOne({_id: req.params.id}, function(err, user) {
 	  if (!user)
 	    res.status(409).json({success: false, message: "User not found/updated!"});
 	  else {
-	    if (req.body.hasPayed) user.hasPayed = req.body.hasPayed;
 	    if (req.body.name) user.name = req.body.name;
-	    if (req.body.isValidated) user.isValidated = req.body.isValidated;
-	    if (req.body.paymentMethod) user.paymentMethod = req.body.paymentMethod;
-	    if (req.body.verificationCode) user.verificationCode = req.body.verificationCode;
 	    user.save();
 	    res.json({success: true, message: "User updated succesfully!", user: user});
 	  }
@@ -91,8 +87,14 @@ module.exports.changeEmail = function(req, res, next){
 	    return res.status(409).json({success: false, message: "User not found/updated!"});
 	  else {
 	    if (req.body.email) {
-	    	user.email = req.body.email;
-	    	user.isValidated = false;
+	    	User.findOne({email: req.body.email}, function(err, user){
+	    		if (!user){
+	    			user.email = req.body.email;
+	    			user.isValidated = false;
+	    		} else {
+	    			return res.status(409).json({success: false, message: "Email already in use!"});
+	    		}
+	    	});
 	    }
 	    user.save();
 	    return next();
