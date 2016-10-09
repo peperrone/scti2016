@@ -10,5 +10,6 @@ module.exports = mongoose.model('User', new Schema({
     hasPayed: Boolean,
     verificationCode: String,
     transaction: Object,
-    resetCode: {type: String, index: {unique: true}}
+    resetCode: String,
+    tshirt: Object
 }));

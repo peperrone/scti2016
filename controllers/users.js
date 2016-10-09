@@ -69,18 +69,47 @@ module.exports.signin = function(req, res) {
 	});
 };
 
-module.exports.edit = function(req, res){
+module.exports.changeName = function(req, res){
 	User.findOne({_id: req.params.id}, function(err, user) {
 	  if (!user)
 	    res.status(409).json({success: false, message: "User not found/updated!"});
 	  else {
-	    if (req.body.hasPayed) user.hasPayed = req.body.hasPayed;
 	    if (req.body.name) user.name = req.body.name;
-	    if (req.body.isValidated) user.isValidated = req.body.isValidated;
-	    if (req.body.paymentMethod) user.paymentMethod = req.body.paymentMethod;
-	    if (req.body.verificationCode) user.verificationCode = req.body.verificationCode;
 	    user.save();
 	    res.json({success: true, message: "User updated succesfully!", user: user});
+	  }
+	});
+};
+
+module.exports.changeEmail = function(req, res, next){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    if (req.body.email) {
+	    	User.findOne({email: req.body.email}, function(err, user){
+	    		if (!user){
+	    			user.email = req.body.email;
+	    			user.isValidated = false;
+	    		} else {
+	    			return res.status(409).json({success: false, message: "Email already in use!"});
+	    		}
+	    	});
+	    }
+	    user.save();
+	    return next();
+	  }
+	});
+};
+
+module.exports.changeTshirt = function(req, res){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    user.tshirt = req.body.tshirt;
+	    user.save();
+	    res.json({success: true, user: user});
 	  }
 	});
 };
@@ -134,7 +163,6 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 }
 
 module.exports.sendVerification = function(req, res, next) {
-
 	var verificationCode = null;
 	var subject = 'SCTI - Codigo de verificacao de email';
 	crypto.randomBytes(16, (err, buf) => {

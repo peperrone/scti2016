@@ -20,9 +20,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	        templateUrl: 'routes/schedule',
 	        controller: 'scheduleCtrl'
 	    })
-			.when('/gifts', {
+		.when('/gifts', {
 	        templateUrl: 'routes/gifts',
 	        controller: 'giftsCtrl'
+	    })
+	    .when('/editAccount', {
+	        templateUrl: 'routes/editAccount',
+	        controller: 'editAccCtrl'
+	    })
+	    .when('/tshirt', {
+	        templateUrl: 'routes/tshirt',
+	        controller: 'tshirtCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
