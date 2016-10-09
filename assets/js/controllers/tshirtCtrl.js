@@ -14,7 +14,7 @@ angular.module('TshirtCtrl', []).controller('tshirtCtrl', function($scope, $http
 		if (!sizeList || !modelList) return;
 		var tshirt = {};
 
-		tshirt.type = sizeList.charAt(0) === 1 ? "Comum" : "Babylook";
+		tshirt.type = sizeList.charAt(0) === '1' ? "Comum" : "Babylook";
 		tshirt.size = sizeList.substring(1);
 		tshirt.model = modelList;
 
