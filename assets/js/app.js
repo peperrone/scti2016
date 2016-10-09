@@ -1,4 +1,4 @@
-var app = angular.module('sctiApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'UserAreaCtrl', 'HeaderCtrl', 'LoginCtrl', 'SignupCtrl', 'ForgotPasswordCtrl', 'NewPasswordCtrl', 'ScheduleCtrl', 'BugReportCtrl', 'GiftsCtrl', 'EditAccCtrl']);
+var app = angular.module('sctiApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'UserAreaCtrl', 'HeaderCtrl', 'LoginCtrl', 'SignupCtrl', 'ForgotPasswordCtrl', 'NewPasswordCtrl', 'ScheduleCtrl', 'BugReportCtrl', 'GiftsCtrl', 'EditAccCtrl', 'TshirtCtrl']);
 
 app.directive('myEnter', function () {
     return function (scope, element, attrs) {

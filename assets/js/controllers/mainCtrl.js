@@ -9,5 +9,5 @@ angular.module('MainCtrl', [])
 	sessionService.checkAuth(function(isAuthenticated){
 		$scope.loading = false;
 	});
-	$('select').material_select();
+	
 });

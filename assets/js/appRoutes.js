@@ -30,7 +30,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	    })
 	    .when('/tshirt', {
 	        templateUrl: 'routes/tshirt',
-	        controller: 'editAccCtrl'
+	        controller: 'tshirtCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
