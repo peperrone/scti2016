@@ -15,6 +15,8 @@ router.post('/users/:id/validateGiftCode',
 			userCtrl.isAuthenticated, userCtrl.validateGiftCode);
 router.put('/users/:id/changeEmail',
 			userCtrl.isAuthenticated, userCtrl.changeEmail, userCtrl.sendVerification);
+router.put('/users/:id/tshirt',
+			userCtrl.isAuthenticated, userCtrl.changeTshirt);
 router.put('/users/:id/changeName',
 			userCtrl.isAuthenticated, userCtrl.changeName);
 router.post('/lostPassword', userCtrl.lostPassword);

@@ -102,6 +102,18 @@ module.exports.changeEmail = function(req, res, next){
 	});
 };
 
+module.exports.changeTshirt = function(req, res){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    user.tshirt = req.body.tshirt;
+	    user.save();
+	    res.json({success: true, user: user});
+	  }
+	});
+};
+
 module.exports.isAuthenticated = function (req, res, next) {
     if (req.body.token) {
 	    jwt.verify(req.body.token, SECRET, function(err, decoded) {      

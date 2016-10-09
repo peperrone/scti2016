@@ -3,38 +3,38 @@
   <div class="row">
     <form class="col s12">
       <div class="input-field col s12 m6">
-          <select>
+          <select ng-model="sizeList">
             <option value="" disabled selected>Escolha seu tamanho</option>
             <optgroup label="Camisa Comum">
-              <option value="">P - 65cm de Altura x 50cm de Largura</option>
-              <option value="">M - 70cm de Altura x 52cm de Largura</option>
-              <option value="">G - 74cm de Altura x 54cm de Largura</option>
-              <option value="">GG - 79cm de Altura x 64cm de Largura</option>
-              <option value="">XGG - 83cm de Altura x 68cm de Largura</option>
+              <option value="1p">P - 65cm de Altura x 50cm de Largura</option>
+              <option value="1m">M - 70cm de Altura x 52cm de Largura</option>
+              <option value="1g">G - 74cm de Altura x 54cm de Largura</option>
+              <option value="1gg">GG - 79cm de Altura x 64cm de Largura</option>
+              <option value="1xgg">XGG - 83cm de Altura x 68cm de Largura</option>
             </optgroup>
             <optgroup label="Babylook">
-              <option value="">P - 52cm de Altura x 40cm de Largura</option>
-              <option value="">M - 59cm de Altura x 47cm de Largura</option>
-              <option value="">G - 60cm de Altura x 48cm de Largura</option>
-              <option value="">GG - 62cm de Altura x 49cm de Largura</option>
+              <option value="2p">P - 52cm de Altura x 40cm de Largura</option>
+              <option value="2m">M - 59cm de Altura x 47cm de Largura</option>
+              <option value="2g">G - 60cm de Altura x 48cm de Largura</option>
+              <option value="2gg">GG - 62cm de Altura x 49cm de Largura</option>
             </optgroup>
           </select>
           <label>Tamanho da Camisa</label>
         </div>
         <div class="input-field col s12 m6">
-          <select class="icons">
+          <select ng-model="modelList" class="icons">
             <option value="" disabled selected>Escolha o modelo</option>
-            <option value="" data-icon="imgs/node-select.png" class="circle">Node.js</option>
-            <option value="" data-icon="imgs/android-select.png" class="circle">Android</option>
-            <option value="" data-icon="imgs/arduino-select.png" class="circle">Arduino</option>
-            <option value="" data-icon="imgs/docker-select.png" class="circle">Docker</option>
-            <option value="" data-icon="imgs/github-select.png" class="circle">GitHub</option>
-            <option value="" data-icon="imgs/rails-select.png" class="circle">Ruby on Rails</option>
+            <option value="Node" data-icon="imgs/node-select.png" class="circle">Node.js</option>
+            <option value="Android" data-icon="imgs/android-select.png" class="circle">Android</option>
+            <option value="Arduino" data-icon="imgs/arduino-select.png" class="circle">Arduino</option>
+            <option value="Docker" data-icon="imgs/docker-select.png" class="circle">Docker</option>
+            <option value="Github" data-icon="imgs/github-select.png" class="circle">GitHub</option>
+            <option value="Rails" data-icon="imgs/rails-select.png" class="circle">Ruby on Rails</option>
           </select>
           <label>Modelo da Camisa</label>
         </div>
 
-        <button class="btn scti-blue center" type="submit">Salvar</button>
+        <button class="btn scti-blue center" type="submit" ng-click="saveTshirtModel(sizeList, modelList)">Salvar</button>
     </form>
   </div>
   <div class="row">
