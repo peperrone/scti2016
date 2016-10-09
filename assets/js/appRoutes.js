@@ -27,6 +27,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	    .when('/editAccount', {
 	        templateUrl: 'routes/editAccount',
 	        controller: 'editAccCtrl'
+	    })
+	    .when('/tshirt', {
+	        templateUrl: 'routes/tshirt',
+	        controller: 'editAccCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);

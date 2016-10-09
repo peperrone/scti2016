@@ -35,7 +35,7 @@ router.get('/admin', auth, function(req, res) {
 });
 
 router.get('*', function(req, res) {
-	res.json("OOooooooops! Nothing to do here. :(");
+	res.redirect("/");
 });
 
 module.exports = {
