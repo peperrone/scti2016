@@ -19,6 +19,8 @@ router.put('/users/:id/tshirt',
 			userCtrl.isAuthenticated, userCtrl.changeTshirt);
 router.put('/users/:id/changeName',
 			userCtrl.isAuthenticated, userCtrl.changeName);
+router.put('/users/:id/changePassword',
+			userCtrl.isAuthenticated, userCtrl.changePassword);
 router.post('/lostPassword', userCtrl.lostPassword);
 router.put('/resetPassword', userCtrl.resetPassword);
 router.get('/resetCode/:resetCode', userCtrl.resetCode);

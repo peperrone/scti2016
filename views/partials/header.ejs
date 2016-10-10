@@ -7,7 +7,7 @@
       <li><a class="modal-trigger ng-cloak dropdown-button" data-beloworigin="true" data-activates='dropdown1' href="#" ng-show="user">Olá, {{user.name.split(" ")[0]}} &#9662;</a></li>
       <ul id='dropdown1' class='dropdown-content'>
         <li><a class="scti-blue-text" href="/user">Status da Inscrição</a></li>
-        <!-- <li><a class="scti-blue-text" href="/editAccount">Editar cadastro</a></li> -->
+        <li><a class="scti-blue-text" href="/editAccount">Editar cadastro</a></li>
         <li><a class="scti-blue-text" href="/tshirt">Escolha sua camisa</a></li>
         <li class="divider"></li>
         <li><a class="scti-blue-text" ng-click="logout()">Logout</a></li>
@@ -22,6 +22,7 @@
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/gifts">Benefícios e Sorteios</a></li>
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/user" ng-show="user">{{user.name.split(" ")[0]}}</a></li>
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/tshirt" ng-show="user">Escolha sua camisa</a></li>
+      <li><a class="ng-cloak" ng-click="closeSideNav()" href="/editAccount" ng-show="user">Editar cadastro</a></li>
       <li><a class="ng-cloak" ng-click="openModal(); closeSideNav()" ng-hide="user">Login</a></li>
       <li><a class="ng-cloak" ng-click="logout(); closeSideNav()" ng-show="user">Logout</a></li>
     </ul>
