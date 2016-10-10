@@ -3,10 +3,6 @@
     .lighthouse {
         bottom: -500px ;
     }
-    .valign-wrapper{
-      display: block !important;
-      webkit-display: block !important;
-    }
 }
 @media only screen and (max-width: 600px) {
   .mobile-no-show{
@@ -14,6 +10,10 @@
   }
   #talks .card .card-stacked .card-action span.mobile-small-text, #workshops .card .card-stacked .card-action span.mobile-small-text{
     font-size: 11px;
+  }
+  .valign-wrapper{
+    display: block !important;
+    webkit-display: block !important;
   }
 }
 
