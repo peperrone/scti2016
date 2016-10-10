@@ -7,18 +7,23 @@
 <h1>Users table</h1>
   <table ng-controller="adminCtrl" class="rwd-table">
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>Email</th>
       <th>isVerified?</th>
       <th>hasPaid?</th>
       <th>Created at</th>
+      <th>Tshirt</th>
+      <th></th>
     </tr>
-    <tr ng-repeat="user in users">
+    <tr ng-repeat="user in users" ng-class="{highlight: user.hasPayed}">
+      <td data-th="#">{{$index + 1}}</td>
       <td data-th="Name">{{user.name}}</td>
       <td data-th="Email">{{user.email}}</td>
       <td data-th="isVerified?">{{user.isValidated}}</td>
       <td data-th="hasPaid?">{{user.hasPayed}}</td>
       <td ng-cloak data-th="createdAt">{{createdAt(user._id)}}</td>
+      <td ng-cloak data-th="Tshirt">{{user.tshirt.type + " | " + user.tshirt.size + " | " + user.tshirt.model}}</td>
     </tr>
   </table>
   <!--  Scripts-->
