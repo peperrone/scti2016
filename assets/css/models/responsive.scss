@@ -8,8 +8,12 @@
   .mobile-no-show{
     display: none;
   }
-  #talks .card .card-action span.mobile-small-text, #workshops .card .card-action span.mobile-small-text{
+  #talks .card .card-stacked .card-action span.mobile-small-text, #workshops .card .card-stacked .card-action span.mobile-small-text{
     font-size: 11px;
+  }
+  .valign-wrapper{
+    display: block !important;
+    webkit-display: block !important;
   }
 }
 
