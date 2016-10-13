@@ -315,7 +315,13 @@ module.exports.validateGiftCode = function(req, res) {
 					if (giftCode.userId != null) {
 						res.status(409).json({success: false, message: "Sorry. Someone has already taken this one!"});
 					} else {
-						user.hasPayed = true;
+						if (giftCode.code.length === 6) {
+							user.hasPayed = true;
+							user.isIff = true;
+						} else {
+							user.hasPayed = true;
+							user.isIff = false;
+						}
 						giftCode.userId = req.params.id;
 						giftCode.save();
 						user.save();
