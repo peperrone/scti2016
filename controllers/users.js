@@ -320,7 +320,7 @@ module.exports.validateGiftCode = function(req, res) {
 							user.isIff = true;
 						} else {
 							user.hasPayed = true;
-							user.isIff = true;
+							user.isIff = false;
 						}
 						giftCode.userId = req.params.id;
 						giftCode.save();
