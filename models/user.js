@@ -11,5 +11,6 @@ module.exports = mongoose.model('User', new Schema({
     verificationCode: String,
     transaction: Object,
     resetCode: String,
-    tshirt: Object
+    tshirt: Object,
+    isIff: Boolean
 }));
