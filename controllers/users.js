@@ -69,18 +69,79 @@ module.exports.signin = function(req, res) {
 	});
 };
 
-module.exports.edit = function(req, res){
+module.exports.changeName = function(req, res){
 	User.findOne({_id: req.params.id}, function(err, user) {
 	  if (!user)
 	    res.status(409).json({success: false, message: "User not found/updated!"});
 	  else {
-	    if (req.body.hasPayed) user.hasPayed = req.body.hasPayed;
 	    if (req.body.name) user.name = req.body.name;
-	    if (req.body.isValidated) user.isValidated = req.body.isValidated;
-	    if (req.body.paymentMethod) user.paymentMethod = req.body.paymentMethod;
-	    if (req.body.verificationCode) user.verificationCode = req.body.verificationCode;
 	    user.save();
 	    res.json({success: true, message: "User updated succesfully!", user: user});
+	  }
+	});
+};
+
+module.exports.changePassword = function(req, res){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user || err)
+	    res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    bcrypt.compare(req.body.oldPassword, user.password, function(bcryptErr, bcryptRes) {
+	    	if (bcryptErr) {
+	    		res.status(401).json({
+	    			success: false,
+	    			message: bcryptErr
+	    		})
+	    	}
+	    	if (bcryptRes) {
+	    		bcrypt.hash(req.body.newPassword, saltRounds, function(err2, hash){
+					if (err2) res.status(500).json({success: false, message: err2.errmsg});
+					user.password = hash;
+					user.save(function(err3) {
+						if (err3) {
+							res.status(409).json({success: false, message: err3.errmsg});
+						}
+						req.params.id = user.id;
+						res.json({success: true, user: user});
+					});
+				});
+	    	} else {
+	    		res.status(401).json({success: false, message: "Authentication failed. Incorrect password!"});
+	    	}
+		});
+	  }
+	});
+};
+
+module.exports.changeEmail = function(req, res, next){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    if (req.body.email) {
+	    	User.findOne({email: req.body.email}, function(err, user2){
+	    		if (!user2){
+	    			user.email = req.body.email;
+	    			user.isValidated = false;
+	    			user.save();
+	    			return next();
+	    		} else {
+	    			return res.status(409).json({success: false, message: "Email already in use!"});
+	    		}
+	    	});
+	    }
+	  }
+	});
+};
+
+module.exports.changeTshirt = function(req, res){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else {
+	    user.tshirt = req.body.tshirt;
+	    user.save();
+	    res.json({success: true, user: user});
 	  }
 	});
 };
@@ -134,7 +195,6 @@ var sendEmail = function(email, htmlBody, subject, callback) {
 }
 
 module.exports.sendVerification = function(req, res, next) {
-
 	var verificationCode = null;
 	var subject = 'SCTI - Codigo de verificacao de email';
 	crypto.randomBytes(16, (err, buf) => {
@@ -255,7 +315,13 @@ module.exports.validateGiftCode = function(req, res) {
 					if (giftCode.userId != null) {
 						res.status(409).json({success: false, message: "Sorry. Someone has already taken this one!"});
 					} else {
-						user.hasPayed = true;
+						if (giftCode.code.length === 6) {
+							user.hasPayed = true;
+							user.isIff = true;
+						} else {
+							user.hasPayed = true;
+							user.isIff = false;
+						}
 						giftCode.userId = req.params.id;
 						giftCode.save();
 						user.save();
