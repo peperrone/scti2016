@@ -31,6 +31,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	    .when('/tshirt', {
 	        templateUrl: 'routes/tshirt',
 	        controller: 'tshirtCtrl'
+	    })
+	    .when('/workshops', {
+	        templateUrl: 'routes/selectWorkshop',
+	        controller: 'workshopsCtrl'
 	    });
 	$locationProvider.html5Mode(true);
 }]);
