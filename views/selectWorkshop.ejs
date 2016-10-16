@@ -1,0 +1,52 @@
+<div class="row container">
+  <h2 class="header center scti-blue-text">Escolha seus minicursos</h2>
+  <p class="center">A escolha dos minicursos garante prioridade nas vagas dos mesmos, podendo escolher até 2 minicursos. A sua participação no minicurso só sera confirmada, mediante sua presença no local.</p>
+  <p class="center">Você poderá participar de qualquer minicurso, mesmo não estando inscrito nele, desde que todas as vagas não estejam preenchidas, basta comparecer ao local do minicurso no horário de realização do mesmo.</p>
+  <form class="col s12">
+    <div class="input-field col s12 m6">
+        <select ng-model="sizeList">
+          <option value="" disabled selected>Escolha seu primeiro minicurso</option>
+          <optgroup label="Segunda-Feira - 24/10">
+            <option value="">Mídias sociais - 8h00~12h30</option>
+            <option value="">Utilização de técnicas de aprendizado de máquina com o software Weka - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Terça-Feira - 25/10">
+            <option value="">Desenvolvimento de jogos com Corona SDK e LUA - 8h00~12h30</option>
+            <option value="">Técnicas Intermediárias de Git - 8h00~10h00</option>
+            <option value="">Introdução a Gestão Ágil de Projetos - 10h30~12h30</option>
+          </optgroup>
+          <optgroup label="Quarta-Feira - 26/10">
+            <option value="">Ruby Avançado - 8h00~12h30</option
+            <option value="">Arduin Avançado - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Quinta-Feira - 26/10">
+            <option value="">Testes de Usabilidade com Usuários - 8h00~10h00</option
+          </optgroup>
+        </select>
+        <label>Mminicurso 1</label>
+    </div>
+    <div class="input-field col s12 m6">
+        <select ng-model="sizeList">
+          <option value="" disabled selected>Escolha seu segundo minicurso</option>
+          <optgroup label="Segunda-Feira - 24/10">
+            <option value="">Mídias sociais - 8h00~12h30</option>
+            <option value="">Utilização de técnicas de aprendizado de máquina com o software Weka - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Terça-Feira - 25/10">
+            <option value="">Desenvolvimento de jogos com Corona SDK e LUA - 8h00~12h30</option>
+            <option value="">Técnicas Intermediárias de Git - 8h00~10h00</option>
+            <option value="">Introdução a Gestão Ágil de Projetos - 10h30~12h30</option>
+          </optgroup>
+          <optgroup label="Quarta-Feira - 26/10">
+            <option value="">Ruby Avançado - 8h00~12h30</option
+            <option value="">Arduin Avançado - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Quinta-Feira - 26/10">
+            <option value="">Testes de Usabilidade com Usuários - 8h00~10h00</option
+          </optgroup>
+        </select>
+        <label>Mminicurso 2</label>
+    </div>
+    <button class="btn scti-blue center" type="submit" ng-click="saveTshirtModel(sizeList, modelList)">Salvar</button>
+  </form>
+</div>
