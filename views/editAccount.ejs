@@ -5,51 +5,51 @@
   <div class='container col s6 offset-s3'>
     <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Nome:</b> {{user.name}} </div>
+        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Nome</b><span class="hide-on-med-and-down">: {{user.name}} </span></div>
         <div class="collapsible-body">
           <div class="container">
-            <div class="row valign-wrapper">
-              <div class="input-field col s9">
-                <input ng-model="newName" id="change-name-input" type="text" class="validate">
+            <div class="row">
+              <div class="input-field col s12">
+                <input my-enter="changeName(newName)" ng-model="newName" id="change-name-input" type="text" class="validate">
                 <label for="change-name-input">Novo nome</label>
               </div>
-              <div class="waves-effect waves-light btn col s3 scti-blue" ng-click="changeName(newName)">Salvar</div>
+              <div class="waves-effect waves-light btn scti-blue col s12" ng-click="changeName(newName)">Salvar</div>
             </div>
           </div>
         </div>
       </li>
       <li>
-        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Email:</b> {{user.email}} </div>
+        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Email</b><span class="hide-on-med-and-down">: {{user.email}} </span> </div>
         <div class="collapsible-body">
           <div class="container">
-            <div class="row valign-wrapper">
-              <div class="input-field col s9">
+            <div class="row">
+              <div class="input-field col s12">
                 <input ng-model="newEmail" id="change-email-input" type="email" class="validate">
                 <label for="change-email-input">Novo email</label>
               </div>
-              <div class="waves-effect waves-light btn col s3 scti-blue" ng-click="changeEmail(newEmail)">Salvar</div>
+              <div class="waves-effect waves-light btn col s12 scti-blue" ng-click="changeEmail(newEmail)">Salvar</div>
             </div>
           </div>
         </div>
       </li>
       <li>
-        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Senha:</b> ********** </div>
+        <div class="collapsible-header scti-blue-text"><i class="material-icons">mode_edit</i><b>Senha</b><span class="hide-on-med-and-down">: ********** </span></div>
         <div class="collapsible-body">
             <div class="row">
                     <div class="input-field col s8 offset-s2">
-                      <input ng-model="user.password" ng-class="{invalid: invalidPassword}" id="password3" type="password" class="validate" required="" aria-required="true" my-enter="login()">
-                      <label id="labelPassword3" for="password3" data-error="Senha inválida!">Senha Atual</label>
+                      <input ng-model="password" id="passwordChange" type="password" class="validate" required="" aria-required="true" my-enter="login()">
+                      <label id="labelPassword3" for="passwordChange" data-error="Senha inválida!">Senha Atual</label>
                     </div>
                     <div class="input-field col s8 offset-s2">
-                      <input my-enter="newPassword()" ng-model="password" id="password" type="password" class="validate"  ng-class="{invalid: invalidPassword}">
-                      <label for="password" data-error="Sua senha deve ter no mínimo 5 caracteres">Nova Senha</label>
+                      <input my-enter="changePassword()" ng-model="newPassword" id="newPasswordChange" type="password" class="validate"  ng-class="{invalid: invalidPassword}">
+                      <label for="newPasswordChange" data-error="Sua senha deve ter no mínimo 5 caracteres">Nova Senha</label>
                     </div>
                     <div class="input-field col s8 offset-s2">
-                      <input my-enter="newPassword()" ng-model="password2" id="password2" type="password" class="validate">
-                      <label for="password2" data-error="As senhas digitadas precisam ser iguais">Confirmar Nova Senha</label>
+                      <input my-enter="changePassword()" ng-model="newPassword2" id="newPasswordChange2" type="password" class="validate">
+                      <label for="newPasswordChange2" data-error="As senhas digitadas precisam ser iguais">Confirmar Nova Senha</label>
                     </div>
                     <div class="input-field col s12">
-                      <button ng-click="newPassword()" type="submit" class="waves-effect waves-light btn scti-blue center">Redefinir Senha</button>
+                      <button ng-click="changePassword()" type="submit" class="waves-effect waves-light btn scti-blue center">Redefinir Senha</button>
                     </div>
             </div>
         </div>
