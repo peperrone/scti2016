@@ -81,3 +81,6 @@ h1 {
 .rwd-table th, .rwd-table td:before {
   color: #dd5;
 }
+.highlight {
+  color: #4db6ac;
+}
