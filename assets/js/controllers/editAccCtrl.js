@@ -1,5 +1,9 @@
 angular.module('EditAccCtrl', []).controller('editAccCtrl', function($scope, $http, $location, sessionService) {
 
+	setTimeout(function(){
+	   $('select').material_select();
+	}, 0);
+	
 	$scope.loading = true;
 	$scope.invalidPassword = false;
 

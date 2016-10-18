@@ -19,7 +19,7 @@ var auth = function(req, res, next){
     }
 };
 
-var commonRoutes = ['/user', '/forgotpassword', '/newpassword/:userId', '/schedule', '/gifts', '/editAccount', '/'];
+var commonRoutes = ['/user', '/forgotpassword', '/newpassword/:userId', '/schedule', '/gifts', '/editAccount', '/workshops', '/'];
 
 router.get('/routes/:name', function (req, res){
 	var name = req.params.name;

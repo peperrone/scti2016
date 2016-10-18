@@ -9,6 +9,7 @@
         <li><a class="scti-blue-text" href="/user">Status da Inscrição</a></li>
         <li><a class="scti-blue-text" href="/editAccount">Editar cadastro</a></li>
         <li ng-hide="user.isIff || !user.hasPayed"><a class="scti-blue-text ng-cloak" href="/tshirt">Escolha sua camisa</a></li>
+        <li ng-hide="!user.hasPayed"><a class="scti-blue-text ng-cloak" href="/workshops">Escolha seus minicursos</a></li>
         <li class="divider"></li>
         <li><a class="scti-blue-text" ng-click="logout()">Logout</a></li>
       </ul>
@@ -22,6 +23,7 @@
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/gifts">Benefícios e Sorteios</a></li>
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/user" ng-show="user">{{user.name.split(" ")[0]}}</a></li>
       <li ng-hide="user.isIff || !user.hasPayed"><a class="ng-cloak" ng-click="closeSideNav()" href="/tshirt" ng-show="user">Escolha sua camisa</a></li>
+      <li ng-hide="!user.hasPayed"><a class="ng-cloak" ng-click="closeSideNav()" href="/workshops" ng-show="user">Escolha seus minicursos</a></li>
       <li><a class="ng-cloak" ng-click="closeSideNav()" href="/editAccount" ng-show="user">Editar cadastro</a></li>
       <li><a class="ng-cloak" ng-click="openModal(); closeSideNav()" ng-hide="user">Login</a></li>
       <li><a class="ng-cloak" ng-click="logout(); closeSideNav()" ng-show="user">Logout</a></li>

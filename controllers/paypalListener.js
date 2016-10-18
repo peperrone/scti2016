@@ -3,13 +3,18 @@ var request = require('request');
 
 module.exports.listener = function(req, res) {
 	console.log(req.body);
+	console.log('===============');
 	if (req.body){
 		var newBody = {cmd: "_notify-validate"};
 		for(var key in req.body) 
 			newBody[key] = req.body[key];
+		console.log(newBody);
+		console.log('===============');
 		request.post({url:'https://www.paypal.com/cgi-bin/webscr', form: newBody}, function(err,response,body){
 			console.log(response);
+			console.log('===============');
 			console.log(body);
+			console.log('===============');
 			if (!err && response.statusCode == 200) {
 			    if (body === "VERIFIED") {
 			    	User.findOne({_id: req.body.custom}, function(mongoErr, user){
@@ -24,6 +29,8 @@ module.exports.listener = function(req, res) {
 			    			user.save();
 			    		}
 			    	})
+			    } else {
+			    	console.log("Invalid paypal response!");
 			    }
 			} else {
 				console.log(err);

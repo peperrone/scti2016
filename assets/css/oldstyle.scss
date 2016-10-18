@@ -198,8 +198,6 @@ button.sleep{
 	display: none;
 }
 
-
-
 #local-pay, #paypal{
 	max-width: 450px;
 	margin-bottom: 30px;
@@ -207,5 +205,13 @@ button.sleep{
 }
 
 .dropdown-content li>a {
+	color: $scti-blue;
+}
+
+.error-highlight {
+	border-bottom: 1px solid red !important;
+}
+
+.highlight {
 	color: $scti-blue;
 }
