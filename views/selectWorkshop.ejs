@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="workshop in workshops" ng-class="{highlight: workshop.enrolled.includes(user._id)}">
+      <tr ng-repeat="workshop in workshops | orderBy:'_id'" ng-class="{highlight: workshop.enrolled.includes(user._id)}">
         <td ng-bind="workshop.weekday"></td>
         <td ng-bind="workshop.name"></td>
         <td ng-bind="workshop.startsAt"></td>
