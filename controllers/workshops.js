@@ -19,7 +19,7 @@ GiftCode.find({}, function(err, giftCodes){
 module.exports.isNotIffBomje = function(req, res, next) {
 	GiftCode.findOne({userId: req.params.id}, function(err, giftCode){
 		if (!giftCode) {
-			res.status(400).json({success: false, message: "Code not found"});
+			next();
 		} else {
 			if (bomjeGiftCodes.indexOf(giftCode.code) > -1){
 				res.status(401).json({success: false, message: "Cannot singup for workshops!"});
