@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userCtrl = require('../controllers/users');
 var paypalCtrl = require('../controllers/paypalListener');
+var workshopCtrl = require('../controllers/workshops');
 var auth = require('./public').auth;
 
 router.post('/signin', userCtrl.signin);
@@ -27,5 +28,7 @@ router.get('/resetCode/:resetCode', userCtrl.resetCode);
 router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 router.post('/paypalReturn', paypalCtrl.listener);
 router.post('/sendBugReport', userCtrl.sendBugReport);
+router.get('/workshops', workshopCtrl.getWorkshops);
+router.put('/users/:id/selectWorkshops', userCtrl.isAuthenticated, workshopCtrl.isNotIffBomje, workshopCtrl.removeUserFromWorkshops, workshopCtrl.selectWorkshops);
 
 module.exports = router;

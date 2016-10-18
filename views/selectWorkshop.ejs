@@ -1,0 +1,78 @@
+<div class="container center section no-pad-bot" ng-show="loading">
+  <img src="imgs/loading.gif">
+</div>
+<div class="row container" ng-hide="loading">
+  <h2 class="header center scti-blue-text">Escolha seus minicursos</h2>
+  <p class="center">A escolha dos minicursos garante prioridade nas vagas dos mesmos, podendo escolher até 2 minicursos. A sua participação no minicurso só sera confirmada, mediante sua presença no local.</p>
+  <p class="center">Você poderá participar de qualquer minicurso, mesmo não estando inscrito nele, desde que todas as vagas não estejam preenchidas, basta comparecer ao local do minicurso no horário de realização do mesmo.</p>
+
+  <table class="bordered responsive-table centered container">
+    <thead>
+      <tr>
+        <th data-field="day">Dia</th>
+        <th data-field="name">Nome</th>
+        <th data-field="startsAt">Início</th>
+        <th data-field="endsAt">Término</th>
+        <th data-field="vacancy">Vagas</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="workshop in workshops" ng-class="{highlight: workshop.enrolled.includes(user._id)}">
+        <td ng-bind="workshop.weekday"></td>
+        <td ng-bind="workshop.name"></td>
+        <td ng-bind="workshop.startsAt"></td>
+        <td ng-bind="workshop.endsAt"></td>
+        <td ng-bind="workshop.vacancy"></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="center highlight"> Os minicursos nos quais você está inscrito aparecerão em azul na tabela acima</p>
+  <form class="col s12">
+    <div id="workshop1" class="input-field col s12 m6">
+        <select class="ng-cloak" ng-model="workshop1">
+          <option value="" disabled selected>Escolha seu primeiro minicurso</option>
+          <optgroup label="Segunda-Feira - 24/10">
+            <option ng-disabled="user.isIff" value="01">Gestão e Planejamento de Mídias sociais - 8h00~12h30</option>
+            <option ng-disabled="user.isIff" value="03">Utilização de técnicas de aprendizado de máquina com o software Weka - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Terça-Feira - 25/10">
+            <option ng-disabled="user.isIff" value="11">Desenvolvimento de jogos com Corona SDK e LUA - 8h00~12h30</option>
+            <option ng-disabled="user.isIff" value="13">Técnicas Intermediárias de Git - 8h00~10h00</option>
+            <option ng-disabled="user.isIff" value="14">Introdução a Gestão Ágil de Projetos - 10h30~12h30</option>
+          </optgroup>
+          <optgroup label="Quarta-Feira - 26/10">
+            <option value="23">Arduino Avançado - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Quinta-Feira - 27/10">
+            <option ng-disabled="user.isIff" value="31">Testes de Usabilidade com Usuários - 8h00~10h00</option>
+            <option ng-disabled="user.isIff" value="21">Rails Avançado - 8h00~12h30</option>
+          </optgroup>
+        </select>
+        <label>Minicurso 1</label>
+    </div>
+    <div ng-hide="user.isIff" id="workshop2" class="input-field col s12 m6 ng-cloak">
+        <select ng-model="workshop2">
+          <option value="" disabled selected>Escolha seu segundo minicurso</option>
+          <optgroup label="Segunda-Feira - 24/10">
+            <option ng-disabled="user.isIff" value="01">Gestão e Planejamento de Mídias sociais - 8h00~12h30</option>
+            <option ng-disabled="user.isIff" value="03">Utilização de técnicas de aprendizado de máquina com o software Weka - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Terça-Feira - 25/10">
+            <option ng-disabled="user.isIff" value="11">Desenvolvimento de jogos com Corona SDK e LUA - 8h00~12h30</option>
+            <option ng-disabled="user.isIff" value="13">Técnicas Intermediárias de Git - 8h00~10h00</option>
+            <option ng-disabled="user.isIff" value="14">Introdução a Gestão Ágil de Projetos - 10h30~12h30</option>
+          </optgroup>
+          <optgroup label="Quarta-Feira - 26/10">
+            <option value="23">Arduino Avançado - 8h00~12h30</option>
+          </optgroup>
+          <optgroup label="Quinta-Feira - 27/10">
+            <option ng-disabled="user.isIff" value="21">Rails Avançado - 8h00~12h30</option>
+            <option ng-disabled="user.isIff" value="31">Testes de Usabilidade com Usuários - 8h00~10h00</option>
+          </optgroup>
+        </select>
+        <label>Minicurso 2</label>
+    </div>
+    <button class="btn scti-blue center" type="submit" ng-click="saveWorkshops(workshop1, workshop2)">Salvar</button>
+  </form>
+</div>
