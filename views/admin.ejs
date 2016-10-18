@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="sctiAppAdmin">
 <head>
    <link href="css/table.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body ng-app="sctiAppAdmin">
-<h1>Users table</h1>
-  <table ng-controller="adminCtrl" class="rwd-table">
+<body ng-controller="adminCtrl">
+<form>
+  <input type="radio" ng-model="option" value="Workshops" checked> Workshops<br>
+  <input type="radio" ng-model="option" value="Users"> Users
+</form>
+<h1 ng-hide="option === 'Users'">Workshop tables</h1>
+<div ng-hide="option === 'Users'" ng-repeat="workshop in workshops | orderBy:'_id'">
+  <h2 ng-bind="workshop.name"></h2>
+  <table class="rwd-table">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>isIff?</th>
+    </tr>
+    <tr ng-repeat="user in workshop.users">
+      <td data-th="#">{{$index + 1}}</td>
+      <td data-th="Name">{{user.name}}</td>
+      <td data-th="Email">{{user.email}}</td>
+      <td data-th="isIff?">{{user.isIff}}</td>
+    </tr>
+  </table>
+</div>
+<div ng-show="option === 'Users'">
+  <h1>Users table</h1>
+  <table class="rwd-table">
     <tr>
       <th>#</th>
       <th>Name</th>
@@ -26,6 +49,7 @@
       <td ng-show="user.tshirt" ng-cloak data-th="Tshirt">{{user.tshirt.type + " | " + user.tshirt.size + " | " + user.tshirt.model}}</td>
     </tr>
   </table>
+</div>
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
