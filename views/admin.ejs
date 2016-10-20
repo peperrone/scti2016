@@ -37,7 +37,7 @@
       <th>hasPaid?</th>
       <th>Created at</th>
       <th>Tshirt</th>
-      <th></th>
+      <th>isIff?</th>
     </tr>
     <tr ng-repeat="user in users" ng-class="{highlight: user.hasPayed}">
       <td data-th="#">{{$index + 1}}</td>
@@ -47,6 +47,7 @@
       <td data-th="hasPaid?">{{user.hasPayed}}</td>
       <td ng-cloak data-th="createdAt">{{createdAt(user._id)}}</td>
       <td ng-show="user.tshirt" ng-cloak data-th="Tshirt">{{user.tshirt.type + " | " + user.tshirt.size + " | " + user.tshirt.model}}</td>
+      <td ng-show="user.isIff" ng-cloak data-th="isIff?">{{user.isIff}}</td>
     </tr>
   </table>
 </div>
