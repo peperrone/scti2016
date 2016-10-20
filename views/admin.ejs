@@ -45,9 +45,9 @@
       <td data-th="Email">{{user.email}}</td>
       <td data-th="isVerified?">{{user.isValidated}}</td>
       <td data-th="hasPaid?">{{user.hasPayed}}</td>
-      <td ng-cloak data-th="createdAt">{{createdAt(user._id)}}</td>
-      <td ng-show="user.tshirt" ng-cloak data-th="Tshirt">{{user.tshirt.type + " | " + user.tshirt.size + " | " + user.tshirt.model}}</td>
-      <td ng-show="user.isIff" ng-cloak data-th="isIff?">{{user.isIff}}</td>
+      <td data-th="createdAt">{{createdAt(user._id)}}</td>
+      <td data-th="Tshirt"><div ng-cloak ng-show="user.tshirt">{{user.tshirt.type + " | " + user.tshirt.size + " | " + user.tshirt.model}}</div></td>
+      <td data-th="isIff?"><div ng-cloak ng-show="user.isIff">{{user.isIff}}</div></td>
     </tr>
   </table>
 </div>
