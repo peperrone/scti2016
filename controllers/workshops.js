@@ -30,6 +30,29 @@ module.exports.isNotIffBomje = function(req, res, next) {
 	});	
 }
 
+module.exports.addScannedUsers = function(req, res) {
+	Workshop.findOne({_id: req.params.id}, function(err, workshop){
+		if (!workshop || err) {
+			res.status(400).json({success: false, message: "Something went wrong!"});
+		} else {
+			var users = req.body.users;
+			if (!workshop.scannedUsers) workshop.scannedUsers = [];
+			workshop.scannedUsers.forEach(function(user){
+				var index = users.indexOf(user);
+				if (index > -1){
+					users.splice(index, 1);
+				}
+			});
+			users.forEach(function(user){
+				workshop.scannedUsers.push(user);
+			});
+			workshop.markModified('scannedUsers');
+			workshop.save();
+			res.json({success: true, message: "Cool ;P"});
+		}
+	});	
+}
+
 module.exports.getWorkshops = function(req, res) {
 	Workshop.find({}, function(err, workshops){
 		if (err) {
