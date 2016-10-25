@@ -8,5 +8,6 @@ module.exports = mongoose.model('Workshop', new Schema({
     endsAt: String, 
     weekday: String,
     vacancy: Number,
-    enrolled: [String]
+    enrolled: [String],
+    scannedUsers: [String]
 }));

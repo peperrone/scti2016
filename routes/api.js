@@ -29,6 +29,7 @@ router.post('/authenticate', userCtrl.isAuthenticated, userCtrl.authenticate);
 router.post('/paypalReturn', paypalCtrl.listener);
 router.post('/sendBugReport', userCtrl.sendBugReport);
 router.get('/workshops', workshopCtrl.getWorkshops);
+router.put('/workshops/:id', auth, workshopCtrl.addScannedUsers);
 router.put('/users/:id/selectWorkshops', userCtrl.isAuthenticated, workshopCtrl.isNotIffBomje, workshopCtrl.removeUserFromWorkshops, workshopCtrl.selectWorkshops);
 
 module.exports = router;
