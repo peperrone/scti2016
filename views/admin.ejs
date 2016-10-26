@@ -5,11 +5,26 @@
 </head>
 <body ng-controller="adminCtrl">
 <form>
+  <input type="radio" ng-model="option" value="Attendance"> Attendance<br>
   <input type="radio" ng-model="option" value="Workshops" checked> Workshops<br>
   <input type="radio" ng-model="option" value="Users"> Users
 </form>
-<h1 ng-hide="option === 'Users'">Workshop tables</h1>
-<div ng-hide="option === 'Users'" ng-repeat="workshop in workshops | orderBy:'_id'">
+<h1 ng-show="option === 'Attendance'">Attendance tables</h1>
+<div ng-show="option === 'Attendance'" ng-repeat="workshop in workshops | orderBy:'_id'">
+  <h2 ng-bind="workshop.name"></h2>
+  <table class="rwd-table">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+    </tr>
+    <tr ng-repeat="user in workshop.scannedUsers">
+      <td data-th="#">{{$index + 1}}</td>
+      <td data-th="Name">{{user}}</td>
+    </tr>
+  </table>
+</div>
+<h1 ng-show="option === 'Workshops'">Workshop tables</h1>
+<div ng-show="option === 'Workshops'" ng-repeat="workshop in workshops | orderBy:'_id'">
   <h2 ng-bind="workshop.name"></h2>
   <table class="rwd-table">
     <tr>
