@@ -13,5 +13,10 @@ angular.module('MainCtrl', [])
 	sessionService.checkAuth(function(isAuthenticated){
 		$scope.loading = false;
 	});
+
+  $scope.$on('$viewContentLoaded', function(event) {
+    ga('set', 'page', '/');
+    ga('send', 'pageview');
+  });
 	
 });

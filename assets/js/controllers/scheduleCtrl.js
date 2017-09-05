@@ -19,6 +19,7 @@ angular.module('ScheduleCtrl', []).controller('scheduleCtrl', function($scope, $
   }
 
   $scope.$on('$viewContentLoaded', function(event) {
-    ga('send', 'pageview', '/talks');
+    ga('set', 'page', '/talks');
+    ga('send', 'pageview');
   });
 });
