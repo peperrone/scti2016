@@ -6,6 +6,10 @@ angular.module('MainCtrl', [])
 		$('#modal1').openModal();
 	};
 
+  $scope.sendGaEvent = function() {
+    ga('send', 'event', 'outbound-link', 'click', 'inscreva-se');
+  }
+
 	sessionService.checkAuth(function(isAuthenticated){
 		$scope.loading = false;
 	});

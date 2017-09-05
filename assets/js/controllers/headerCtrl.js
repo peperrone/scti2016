@@ -23,5 +23,9 @@ angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $wind
 	$scope.closeSideNav = function() {
 		$('.button-collapse').sideNav('hide');
 	};
+
+	$scope.sendGaHomePageview = function() {
+    ga('send', 'pageview', '/');
+  }
     
 });

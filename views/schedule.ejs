@@ -1,7 +1,7 @@
 <div class="select-tabs row">
   <ul class="tabs col s12 m8 offset-m2">
-    <li class="tab col s6 m4" ng-class="{active: showTalks}"><a href="" ng-click="showTalks=true">Palestras</a></li>
-    <li class="tab col s6 m4" ng-class="{active: !showTalks}"><a href="" ng-click="showTalks=false">Minicursos</a></li>
+    <li class="tab col s6 m4" ng-class="{active: showTalks}"><a href="" ng-click="sendGaTalksPageview();showTalks=true">Palestras</a></li>
+    <li class="tab col s6 m4" ng-class="{active: !showTalks}"><a href="" ng-click="sendGaWorkshopPageview();showTalks=false">Minicursos</a></li>
   </ul>
 </div>
 
@@ -18,7 +18,7 @@
       <p class="header center light">Não perca tempo!</p>
     </div>
     <div class="col s12 m3">
-      <a class="waves-effect waves-light btn btn-large scti-blue modal-trigger" href="//www.sympla.com.br/scti---semana-de-computacao-e-tecnologia-da-informacao__180372">Inscreva-se</a>
+      <a class="waves-effect waves-light btn btn-large scti-blue modal-trigger" href="//www.sympla.com.br/scti---semana-de-computacao-e-tecnologia-da-informacao__180372" ng-click="sendGaEvent()">Inscreva-se</a>
       <!-- <% include partials/signupModal %> -->
     </div>
 <!--     <div class="col s12 m3">
