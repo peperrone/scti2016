@@ -3,6 +3,7 @@ var app        = express();
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var mongoose   = require('mongoose');
+var cors       = require('cors');
 
 var config = require('config');
 var apiRoutes = require('./routes/api');
@@ -85,6 +86,8 @@ app.set('view engine', 'ejs');
 if(config.util.getEnv('NODE_ENV') !== 'test') {
     app.use(morgan('combined'));
 }
+
+app.use(cors())
 app.use('/api', apiRoutes);
 app.use('/', viewRoutes);
 
