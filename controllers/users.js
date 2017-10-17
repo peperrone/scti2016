@@ -349,3 +349,17 @@ module.exports.sendBugReport = function(req, res) {
 		}
 	});
 };
+
+module.exports.reviewEvent = function(req, res){
+	User.findOne({_id: req.params.id}, function(err, user) {
+	  if (!user)
+	    return res.status(409).json({success: false, message: "User not found/updated!"});
+	  else if (!req.body.rating)
+	  	return res.status(400).json({success: false, message: "Missing rating parameter"});
+	  else {
+	    user.rating = req.body.rating;
+	    user.save();
+	    res.json({success: true, user: user});
+	  }
+	});
+};
