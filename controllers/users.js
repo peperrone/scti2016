@@ -1,5 +1,6 @@
 var User   = require('../models/user');
 var GiftCode   = require('../models/giftcode');
+var Workshop = require('../models/workshop');
 var bcrypt = require('bcrypt');
 var jwt    = require('jsonwebtoken');
 var config = require('config');
@@ -170,7 +171,12 @@ module.exports.authenticate = function(req, res) {
 		if (!user) {
 			res.status(403).json({success: false, message: "User not found"});
 		} else {
-			res.status(200).json({ success: true, user: user, token: req.body.token});
+			Workshop.find({enrolled: { $all: [user._id] }}, function(err, workshops) {
+				if (!err && workshops){
+					user.workshops = workshops
+				}
+				res.status(200).json({ success: true, user: user, token: req.body.token});
+			})
 		}
 	});
 };
