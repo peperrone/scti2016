@@ -173,9 +173,10 @@ module.exports.authenticate = function(req, res) {
 		} else {
 			Workshop.find({enrolled: { $all: [user._id] }}, function(err, workshops) {
 				if (!err && workshops){
-					user.workshops = workshops
+					res.status(200).json({ success: true, user, workshops, token: req.body.token});
+				} else {
+					res.status(200).json({ success: true, user: user, token: req.body.token});
 				}
-				res.status(200).json({ success: true, user: user, token: req.body.token});
 			})
 		}
 	});
