@@ -20,6 +20,10 @@ angular.module('HeaderCtrl', []).controller('headerCtrl', function($scope, $wind
 		$('#modal2').openModal();
 	};
 
+	$scope.openSignupModal = function() {
+		$('#modal1').openModal();
+	};
+
 	$scope.closeSideNav = function() {
 		$('.button-collapse').sideNav('hide');
 	};
